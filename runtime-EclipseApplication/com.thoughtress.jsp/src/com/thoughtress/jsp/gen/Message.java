@@ -3,17 +3,9 @@ package com.thoughtress.jsp.gen;
 import java.util.HashMap;
 
 public class Message {
-	private String method;
 	private HashMap<String, String> params;
 	public Message(){
-		method = "";
-		params = new HashMap<String, String>();
-	}
-	public void setMethod(String _method){
-		method = _method;
-	}
-	public String getMethod(){
-		return method;
+		this.params = new HashMap<String, String>();
 	}
 	public void setParam(String key, String value){
 		params.put(key, value);

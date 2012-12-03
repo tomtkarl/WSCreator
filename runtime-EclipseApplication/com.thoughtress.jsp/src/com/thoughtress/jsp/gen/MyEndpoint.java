@@ -8,7 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MyEndpoint{
-	public static void respond(HttpServletRequest request, HttpServletResponse response){
+	public static void doGet(HttpServletRequest request, HttpServletResponse response){
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    //pw.println("Content-Type: " + request.getContentType());
+	    pw.println("<h1>Served by doGet</h1>");
+	}
+	public static void doPost(HttpServletRequest request, HttpServletResponse response){
 		StringBuffer data = new StringBuffer();
 		  String line = null;
 		  try {
@@ -24,10 +34,10 @@ public class MyEndpoint{
 			e.printStackTrace();
 		}
 	    pw.println("Content-Type: " + request.getContentType());
-	    Message msg = MyFormatter.parseToMessage(data.toString());
-	    pw.println("Method: " + msg.getMethod());
-		for (String key : msg.getParamKeys()){
-			pw.println("Param: " + key + " : " + msg.getParam(key));
-		}	
+	    Request req = MyFormatter.parseToMessage(data.toString());
+	    pw.println("Method: " + req.getMethod());
+		//for (String key : msg.getParamKeys()){
+			//pw.println("Param: " + key + " : " + msg.getParam(key));
+		//}	
 	}
 }

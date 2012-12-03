@@ -29,7 +29,7 @@ public class HelloWorld extends HttpServlet {
 	 * @generated
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    MyEndpoint.respond(request, response);
+		MyEndpoint.doGet(request, response);
     }
 
 	/**
@@ -37,6 +37,6 @@ public class HelloWorld extends HttpServlet {
 	 * @generated
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      MyEndpoint.respond(request, response);
+      MyEndpoint.doPost(request, response);
   }
 }

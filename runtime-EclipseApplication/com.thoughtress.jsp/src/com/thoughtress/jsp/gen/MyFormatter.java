@@ -15,8 +15,8 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
 public class MyFormatter{	
-	public static Message parseToMessage(String xml){
-		Message msg = new Message();
+	public static Request parseToMessage(String xml){
+		Request msg = new Request();
 		//build header object
 		//content type is critical for dyanamic soap version parsing!
 		MimeHeaders headers = new MimeHeaders();
