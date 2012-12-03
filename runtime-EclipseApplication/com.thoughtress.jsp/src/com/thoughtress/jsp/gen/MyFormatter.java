@@ -16,7 +16,7 @@ import javax.xml.soap.SOAPMessage;
 
 public class MyFormatter{	
 	public static Request parseToMessage(String xml){
-		Request msg = new Request();
+		Request req = new Request();
 		//build header object
 		//content type is critical for dyanamic soap version parsing!
 		MimeHeaders headers = new MimeHeaders();
@@ -47,9 +47,9 @@ public class MyFormatter{
 		}
 		SOAPBodyElement callMethodElement = getMethodElement(body);
 		String callMethodName = getElementName(callMethodElement);
-		msg.setMethod(callMethodName);
-		msg.setParams(parseParams(callMethodElement));	
-		return msg;
+		req.setMethod(callMethodName);
+		req.setParams(parseParams(callMethodElement));	
+		return req;
 	}
 	
 	private static SOAPBodyElement getMethodElement(SOAPBody body){
