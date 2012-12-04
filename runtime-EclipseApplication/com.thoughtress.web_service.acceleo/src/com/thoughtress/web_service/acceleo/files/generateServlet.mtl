@@ -3,8 +3,6 @@
 
 [template public generateServlet(aService : Service)]
 [let EndpointName : String = aService.endpoint.name]
-	
-
 [file ('HelloWorld.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
