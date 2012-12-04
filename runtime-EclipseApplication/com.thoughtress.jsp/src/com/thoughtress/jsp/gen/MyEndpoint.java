@@ -34,8 +34,13 @@ public class MyEndpoint{
 			e.printStackTrace();
 		}
 	    pw.println("Content-Type: " + request.getContentType());
-	    Request req = MyFormatter.parseToMessage(data.toString());
-	    pw.println("Method: " + req.getMethod());
+	    MessageFormatter fmtr = new MyFormatter();
+	    Request req = fmtr.parseToRequest(data.toString());
+	    Response resp = new Response();
+	    resp.responseTo(req);
+	    resp.setParam("foo", "bar");
+	    String ret = fmtr.parseToFormat(resp);
+	    pw.println(ret);
 		//for (String key : msg.getParamKeys()){
 			//pw.println("Param: " + key + " : " + msg.getParam(key));
 		//}	
