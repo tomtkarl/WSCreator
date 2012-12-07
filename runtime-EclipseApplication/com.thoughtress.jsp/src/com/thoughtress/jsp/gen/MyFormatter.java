@@ -20,6 +20,13 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
 public class MyFormatter implements MessageFormatter{
+	
+	private String[] supportedTypes = {"text/xml", "application/soap+xml"};
+	
+	public String[] getTypes(){
+		return supportedTypes;
+	}
+	
 	@Override
 	public Request parseToRequest(String data){
 		Request req = new Request();
@@ -83,6 +90,8 @@ public class MyFormatter implements MessageFormatter{
 		return elem.getElementName().getLocalName();
 	}
 
+	
+	
 	@Override
 	public String parseToFormat(Response resp) {
 		SOAPMessage soapMessage = null;
