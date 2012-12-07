@@ -249,6 +249,7 @@ public class Main extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
     super.registerPackages(resourceSet);
+    resourceSet.getPackageRegistry().put(web_service.Web_servicePackage.eINSTANCE.getNsURI(), web_service.Web_servicePackage.eINSTANCE);
     // TODO If you need additional package registrations, do them here. The following line is an example for UML.
     // resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
   }
