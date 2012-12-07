@@ -8,16 +8,18 @@
   <genPackages prefix="Web_service" disposableProviderFactory="true" ecorePackage="web_service.ecore#/">
     <genClasses ecoreClass="web_service.ecore#//Service">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Service/endpoint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//Service/name"/>
     </genClasses>
     <genClasses ecoreClass="web_service.ecore#//Endpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//Endpoint/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/formatters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/functions"/>
     </genClasses>
     <genClasses ecoreClass="web_service.ecore#//XmlMessageFormatter"/>
     <genClasses ecoreClass="web_service.ecore#//MessageFormatter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//MessageFormatter/mimeType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//MessageFormatter/name"/>
+    </genClasses>
+    <genClasses ecoreClass="web_service.ecore#//FunctionProvider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//FunctionProvider/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

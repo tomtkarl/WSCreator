@@ -19,6 +19,15 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Function Provider"
+          description="Create new Function Provider">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="SOAP XML Formatter"
           description="Create new XmlMessageFormatter">
         <smallIcon

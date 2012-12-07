@@ -36,7 +36,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="XmlMessageFormatterFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class XmlMessageFormatterFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureXmlMessageFormatterNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureXmlMessageFormatterMimeTypeFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public XmlMessageFormatterFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.orange);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureXmlMessageFormatterNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureXmlMessageFormatterNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureXmlMessageFormatterNameFigure);&#xA;&#xA;&#xA;&#xA;fFigureXmlMessageFormatterMimeTypeFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureXmlMessageFormatterMimeTypeFigure.setText(&quot;mimeType?&quot;);&#xA;&#xA;this.add(fFigureXmlMessageFormatterMimeTypeFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureXmlMessageFormatterNameFigure() {&#xA;&#x9;&#x9;return fFigureXmlMessageFormatterNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureXmlMessageFormatterMimeTypeFigure() {&#xA;&#x9;&#x9;return fFigureXmlMessageFormatterMimeTypeFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class XmlMessageFormatterFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureXmlMessageFormatterNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public XmlMessageFormatterFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.orange);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureXmlMessageFormatterNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureXmlMessageFormatterNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureXmlMessageFormatterNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureXmlMessageFormatterNameFigure() {&#xA;&#x9;&#x9;return fFigureXmlMessageFormatterNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedBackground="true"/>
@@ -68,22 +68,52 @@
               href="web_service.genmodel#//web_service/MessageFormatter/name"/>
         </modelFacet>
       </labels>
+    </childNodes>
+    <childNodes
+        visualID="3003"
+        editPartClassName="FunctionProviderEditPart"
+        itemSemanticEditPolicyClassName="FunctionProviderItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="FunctionProviderCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="FunctionProviderGraphicalNodeEditPolicy"
+        createCommandClassName="FunctionProviderCreateCommand"
+        containers="//@diagram/@compartments.1">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="FunctionProviderEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="FunctionProviderFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FunctionProviderFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureFunctionProviderNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FunctionProviderFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.yellow);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureFunctionProviderNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureFunctionProviderNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureFunctionProviderNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureFunctionProviderNameFigure() {&#xA;&#x9;&#x9;return fFigureFunctionProviderNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedBackground="true"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="web_service.genmodel#//web_service/FunctionProvider"/>
+        <containmentMetaFeature
+            href="web_service.genmodel#//web_service/Endpoint/functions"/>
+        <childMetaFeature
+            href="web_service.genmodel#//web_service/Endpoint/functions"/>
+      </modelFacet>
       <labels
-          visualID="5005"
-          editPartClassName="XmlMessageFormatterMimeTypeEditPart"
-          itemSemanticEditPolicyClassName="XmlMessageFormatterMimeTypeItemSemanticEditPolicy">
+          visualID="5006"
+          editPartClassName="FunctionProviderNameEditPart"
+          itemSemanticEditPolicyClassName="FunctionProviderNameItemSemanticEditPolicy"
+          elementIcon="true">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getFigureXmlMessageFormatterMimeTypeFigure"
+            getterName="getFigureFunctionProviderNameFigure"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="//@labelParsers/@implementations.0"
-            viewPattern="">
+            parser="//@labelParsers/@implementations.0">
           <metaFeatures
-              href="web_service.genmodel#//web_service/MessageFormatter/mimeType"/>
+              href="web_service.genmodel#//web_service/FunctionProvider/name"/>
         </modelFacet>
       </labels>
     </childNodes>
@@ -92,7 +122,7 @@
         editPartClassName="EndpointEditPart"
         itemSemanticEditPolicyClassName="EndpointItemSemanticEditPolicy"
         canonicalEditPolicyClassName="EndpointCanonicalEditPolicy"
-        compartments="//@diagram/@compartments.0"
+        compartments="//@diagram/@compartments.0 //@diagram/@compartments.1"
         graphicalNodeEditPolicyClassName="EndpointGraphicalNodeEditPolicy"
         createCommandClassName="EndpointCreateCommand">
       <diagramRunTimeClass
@@ -102,8 +132,9 @@
           editHelperClassName="EndpointEditHelper"/>
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
+          layoutType="FLOW_LAYOUT"
           className="EndpointFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class EndpointFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureEndpointNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureFormattersCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public EndpointFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.green);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureEndpointNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureEndpointNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureEndpointNameFigure);&#xA;&#xA;&#xA;&#xA;fFigureFormattersCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fFigureFormattersCompartmentFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureEndpointNameFigure() {&#xA;&#x9;&#x9;return fFigureEndpointNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureFormattersCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureFormattersCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class EndpointFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureEndpointNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureFunctionsCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureFormattersCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public EndpointFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.green);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureEndpointNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureEndpointNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureEndpointNameFigure);&#xA;&#xA;&#xA;&#xA;fFigureFormattersCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fFigureFormattersCompartmentFigure);&#xA;&#xA;&#xA;&#xA;fFigureFunctionsCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fFigureFunctionsCompartmentFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureEndpointNameFigure() {&#xA;&#x9;&#x9;return fFigureEndpointNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureFunctionsCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureFunctionsCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureFormattersCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureFormattersCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedBackground="true"/>
@@ -151,6 +182,22 @@
           getterName="getFigureFormattersCompartmentFigure"
           figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
+    <compartments
+        visualID="7002"
+        editPartClassName="EndpointFunctionsCompartmentEditPart"
+        itemSemanticEditPolicyClassName="EndpointFunctionsCompartmentItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="EndpointFunctionsCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.1"
+        title="FunctionsCompartment"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.0">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getFigureFunctionsCompartmentFigure"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    </compartments>
     <palette>
       <groups
           title="Components">
@@ -159,6 +206,11 @@
             title="Endpoint"
             description="Create new Endpoint"
             genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Function Provider"
+            description="Create new Function Provider"
+            genNodes="//@diagram/@childNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="SOAP XML Formatter"
@@ -203,6 +255,9 @@
         parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@childNodes.0"/>
     <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@childNodes.1"/>
+    <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
   </navigator>
@@ -232,7 +287,7 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.0/@labels.1/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

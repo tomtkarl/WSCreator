@@ -10,6 +10,8 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="EndpointFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
         <backgroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="green"/>
@@ -20,9 +22,15 @@
         <children
             xsi:type="gmfgraph:Rectangle"
             name="FormattersCompartmentFigure"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="FunctionsCompartmentFigure"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureFunctionsCompartmentFigure"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
@@ -37,16 +45,25 @@
         <children
             xsi:type="gmfgraph:Label"
             name="XmlMessageFormatterNameFigure"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="XmlMessageFormatterMimeTypeFigure"
-            text="mimeType?"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="FunctionProviderFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="FunctionProviderFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="yellow"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="FunctionProviderNameFigure"/>
+      </actualFigure>
       <accessors
-          accessor="getFigureXmlMessageFormatterMimeTypeFigure"
-          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+          accessor="getFigureFunctionProviderNameFigure"
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -55,8 +72,16 @@
   <nodes
       name="XmlMessageFormatter"
       figure="XmlMessageFormatterFigure"/>
+  <nodes
+      name="FunctionProvider"
+      figure="FunctionProviderFigure"/>
   <compartments
       name="FormattersCompartment"
+      figure="EndpointFigure"
+      collapsible="true"
+      accessor="//@figures.0/@descriptors.0/@accessors.2"/>
+  <compartments
+      name="FunctionsCompartment"
       figure="EndpointFigure"
       collapsible="true"
       accessor="//@figures.0/@descriptors.0/@accessors.1"/>
@@ -65,10 +90,9 @@
       figure="EndpointFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels
-      name="XmlMessageFormatterMimeType"
-      figure="XmlMessageFormatterFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+      name="FunctionProviderName"
+      figure="FunctionProviderFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels
       name="XmlMessageFormatterName"
       figure="XmlMessageFormatterFigure"
