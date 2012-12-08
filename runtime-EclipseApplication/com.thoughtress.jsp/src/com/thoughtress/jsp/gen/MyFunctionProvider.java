@@ -8,7 +8,7 @@ public class MyFunctionProvider extends FunctionProvider {
 
 	public Response process(Request req) {
 		Response resp = new Response();
-		resp.responseTo(req);
+		resp.setResponseName(req.getMethod() + "Response");
 	    resp.setParam("foo", "bar");
 	    resp.setParam("Karl", "AWESOME");
 	    return resp;

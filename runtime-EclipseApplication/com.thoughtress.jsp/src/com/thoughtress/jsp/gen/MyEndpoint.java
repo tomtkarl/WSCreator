@@ -36,7 +36,7 @@ public class MyEndpoint{
 		}
 	    //pw.println("Content-Type: " + request.getContentType());
 	    Request req = MyFormatter.parseToRequest(data.toString());
-	    System.out.println("Method: " + req.getMethod() + "\n");
+	    //System.out.println("Method: " + req.getMethod() + "\n");
 	    Response resp = null;
 	    if (MyFunctionProvider.match(req)){
 	    	FunctionProvider func = new MyFunctionProvider();

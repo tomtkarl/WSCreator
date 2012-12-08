@@ -6,8 +6,8 @@ public class Response extends Message{
 		super();
 		responseName = "";
 	}
-	public void responseTo(Request req){
-		responseName = req.getMethod() + "Response";
+	public void setResponseName(String name){
+		responseName = name;
 	}
 	public String getResponseName(){
 		return responseName;
