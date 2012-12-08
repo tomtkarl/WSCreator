@@ -1,7 +1,13 @@
 package com.thoughtress.jsp.gen;
 
-public interface MessageFormatter {
-	public  String[] getTypes();
-	public  Request parseToRequest(String data);
-	public  String parseToFormat(Response answer);
+public abstract class MessageFormatter {
+	public static String[] getTypes(){
+		return null;
+	}
+	public static Request parseToRequest(String data){
+		return null;
+	}
+	public static String parseToFormat(Response answer){
+		return null;
+	}
 }

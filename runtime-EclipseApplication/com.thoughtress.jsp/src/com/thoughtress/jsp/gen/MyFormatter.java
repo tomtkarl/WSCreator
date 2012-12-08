@@ -19,16 +19,15 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
-public class MyFormatter implements MessageFormatter{
+public class MyFormatter extends MessageFormatter{
 	
-	private String[] supportedTypes = {"text/xml", "application/soap+xml"};
+	private static String[] supportedTypes = {"text/xml", "application/soap+xml"};
 	
-	public String[] getTypes(){
+	public static String[] getTypes(){
 		return supportedTypes;
 	}
 	
-	@Override
-	public Request parseToRequest(String data){
+	public static Request parseToRequest(String data){
 		Request req = new Request();
 		//build header object
 		//content type is critical for dyanamic soap version parsing!
@@ -90,10 +89,7 @@ public class MyFormatter implements MessageFormatter{
 		return elem.getElementName().getLocalName();
 	}
 
-	
-	
-	@Override
-	public String parseToFormat(Response resp) {
+	public static String parseToFormat(Response resp) {
 		SOAPMessage soapMessage = null;
 		try {
 			soapMessage = buildMessage(resp);
