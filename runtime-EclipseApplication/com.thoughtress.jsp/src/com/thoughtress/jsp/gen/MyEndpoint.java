@@ -3,6 +3,7 @@ package com.thoughtress.jsp.gen;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,6 @@ public class MyEndpoint{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	    //pw.println("Content-Type: " + request.getContentType());
 	    pw.println("<h1>Served by doGet</h1>");
 	}
 	public static void doPost(HttpServletRequest request, HttpServletResponse response){
@@ -34,21 +34,20 @@ public class MyEndpoint{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	    //pw.println("Content-Type: " + request.getContentType());
-	    Request req = MyFormatter.parseToRequest(data.toString());
+		//parse request using the correct MessageFormatter
+		Request req = null;
+		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
+			req = MyFormatter.parseToRequest(data.toString());
+		}
 	    //System.out.println("Method: " + req.getMethod() + "\n");
-	    Response resp = null;
+	    FunctionProvider func = null;
 	    if (MyFunctionProvider.match(req)){
-	    	FunctionProvider func = new MyFunctionProvider();
-	    	resp = func.process(req);
-	    }
-	    
-	    if (resp != null){
+	    	func = new MyFunctionProvider();
+	    }	    
+	    if (func != null){
+	    	Response resp = func.process(req);
 		    String ret = MyFormatter.parseToFormat(resp);
 		    pw.println(ret);
-			//for (String key : msg.getParamKeys()){
-				//pw.println("Param: " + key + " : " + msg.getParam(key));
-			//}	
 	    }
 	}
 }

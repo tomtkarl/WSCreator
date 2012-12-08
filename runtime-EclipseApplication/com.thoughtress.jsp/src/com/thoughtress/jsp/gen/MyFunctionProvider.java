@@ -1,9 +1,14 @@
 package com.thoughtress.jsp.gen;
 
 public class MyFunctionProvider extends FunctionProvider {
-
+	private static String[] methods = {"GetStockPrice"}; 
 	public static Boolean match(Request req) {
-		return true;
+		for (String m : methods){
+			if (req.getMethod().equals(m)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Response process(Request req) {
