@@ -3,11 +3,18 @@ package com.thoughtress.jsp.gen;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MyEndpoint{
+	private static ArrayList<Class<?>> functions = new ArrayList<Class<?>>();
+	public static void register(Class<?> clz){
+		if (FunctionProvider.class.isAssignableFrom(clz)){
+			functions.add(clz);
+		}
+	}
 	public static void doGet(HttpServletRequest request, HttpServletResponse response){
 		PrintWriter pw = null;
 		try {
@@ -34,12 +41,11 @@ public class MyEndpoint{
 			e.printStackTrace();
 		}
 	    pw.println("Content-Type: " + request.getContentType());
-	    MessageFormatter fmtr = new MyFormatter();
-	    Request req = fmtr.parseToRequest(data.toString());
+	    Request req = MyFormatter.parseToRequest(data.toString());
 	    Response resp = new Response();
 	    resp.responseTo(req);
 	    resp.setParam("foo", "bar");
-	    String ret = fmtr.parseToFormat(resp);
+	    String ret = MyFormatter.parseToFormat(resp);
 	    pw.println(ret);
 		//for (String key : msg.getParamKeys()){
 			//pw.println("Param: " + key + " : " + msg.getParam(key));
