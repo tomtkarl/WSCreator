@@ -43,7 +43,15 @@ public class MyEndpoint{
 	    FunctionProvider func = null;
 	    if (MyFunctionProvider.match(req)){
 	    	func = new MyFunctionProvider();
-	    }	    
+	    } else {
+			try {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND,
+								   "Requested Method Not Found");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}    
 	    if (func != null){
 	    	Response resp = func.process(req);
 		    String ret = MyFormatter.parseToFormat(resp);
