@@ -38,6 +38,15 @@ public class MyEndpoint{
 		Request req = null;
 		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
 			req = MyFormatter.parseToRequest(data.toString());
+		} else {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+								   "Unsupported Content Type");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	    //System.out.println("Method: " + req.getMethod() + "\n");
 	    FunctionProvider func = null;
@@ -47,6 +56,7 @@ public class MyEndpoint{
 			try {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND,
 								   "Requested Method Not Found");
+				return;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
