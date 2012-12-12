@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -72,19 +73,34 @@ public class MyFormatter extends MessageFormatter{
 		//first element in SOAPBody is method name
 		return (SOAPBodyElement)elemIter.next();
 	}
-	private static HashMap<String,String> parseParams(SOAPBodyElement methodElem){
+	private static HashMap<String,String[]> parseParams(SOAPBodyElement methodElem){
 		Iterator paramIter = methodElem.getChildElements();
 		//handle child elements (params) of method
 		//Supports named params
-		HashMap<String,String> params = new HashMap<String,String>(); 
+		HashMap<String,String[]> params = new HashMap<String,String[]>(); 
 		while (paramIter.hasNext()){
 			SOAPBodyElement param = (SOAPBodyElement)paramIter.next();
+			Iterator itemIter = param.getChildElements();
+			ArrayList<String> items = new ArrayList<String>();
+			//for each element inside the param
+			while (itemIter.hasNext()){
+				Object next = itemIter.next();
+				//it's either a list of more elements
+				if (next instanceof SOAPBodyElement){
+					SOAPBodyElement item = (SOAPBodyElement)next;
+					items.add(item.getTextContent());
+				//or a simple text node
+				} else {
+					String value = param.getTextContent();
+					items.add(value);
+				}
+			}
 			String paramName = getElementName(param);
-			String paramValue = param.getTextContent();
-			params.put(paramName, paramValue);
+			params.put(paramName, items.toArray(new String[0]));
 		}
 		return params;
 	}
+
 	private static String getElementName(SOAPBodyElement elem){
 		return elem.getElementName().getLocalName();
 	}
@@ -112,23 +128,25 @@ public class MyFormatter extends MessageFormatter{
 		SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
 		SOAPPart soapPart = soapMessage.getSOAPPart();
 	    SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
-	    //HEADERS
-	    /*
-	    SOAPHeader soapHeader = soapEnvelope.getHeader();
-	    soapHeader.addHeaderElement(soapEnvelope.createName(
-	        "Signature", "SOAP-SEC", "http://schemas.xmlsoap.org/soap/security/2000-12"));
-	    */
-	    //BODY
 	    SOAPBody soapBody = soapEnvelope.getBody();
-	    //soapBody.addAttribute(soapEnvelope.createName("FooBar", "m",
-	    //    "http://thoughtress.com/WebService"), "bar");
 	    //first method return node
-	    Name bodyName = soapEnvelope.createName(resp.getResponseName(), "m", "http://thoughtress.com/WebService");
+	    Name bodyName = soapEnvelope.createName(resp.getResponseName(), 
+	    		"m", "http://thoughtress.com/WebService");
 	    SOAPBodyElement bodyElement = soapBody.addBodyElement(bodyName);
 	    //key,value response pairs
 	    for (String key : resp.getParamKeys()){
-	    	SOAPElement child = bodyElement.addChildElement(soapEnvelope.createName(key, "m", "http://thoughtress.com/WebService"));
-		    child.addTextNode(resp.getParam(key));
+	    	SOAPElement child = bodyElement.addChildElement(
+	    			soapEnvelope.createName(key, "m", "http://thoughtress.com/WebService"));
+		    String[] values = resp.getParam(key);
+		    if (values.length > 1){
+		    	for (String val : values){
+		    		SOAPElement item = child.addChildElement(
+		    				soapEnvelope.createName("item", "m", "http://thoughtress.com/WebService"));
+		    		item.addTextNode(val);
+		    	} 
+		    } else {
+	    		child.addTextNode(values[0]);
+	    	}
 	    }
 	    return soapMessage;
 	}
