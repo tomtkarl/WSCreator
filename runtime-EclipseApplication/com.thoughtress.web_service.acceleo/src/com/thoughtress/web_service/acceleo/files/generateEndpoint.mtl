@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module generateEndpoint('http://thoughtress.com/WebService')/]
 [import com::thoughtress::web_service::acceleo::files::generateXmlFormatter/]
+[import com::thoughtress::web_service::acceleo::files::generateFunctionProvider/]
 
 [template public generateEndpoint(aEndpoint : Endpoint)]
 [file (aEndpoint.name+'.java', false, 'UTF-8')]
@@ -97,6 +98,9 @@ public class [aEndpoint.name/]{
 [/file]
 [for (aFormatter : XmlMessageFormatter | aEndpoint.formatters)]
 		[aFormatter.generateXmlFormatter() /]
+[/for]
+[for (aFunctionProvider : FunctionProvider | aEndpoint.functions)]
+		[aFunctionProvider.generateFunctionProvider() /]
 [/for]
 	
 [/template]
