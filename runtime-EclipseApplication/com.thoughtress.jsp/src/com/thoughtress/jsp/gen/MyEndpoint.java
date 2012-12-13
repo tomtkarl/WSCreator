@@ -35,9 +35,9 @@ public class MyEndpoint{
 			e.printStackTrace();
 		}
 		//parse request using the correct MessageFormatter
-		Request req = null;
+		MessageFormatter mf = null;
 		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
-			req = MyFormatter.parseToRequest(data.toString());
+			mf = new MyFormatter();			
 		} else {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -48,6 +48,7 @@ public class MyEndpoint{
 				e.printStackTrace();
 			}
 		}
+		Request req = mf.parseToRequest(data.toString());
 	    //System.out.println("Method: " + req.getMethod() + "\n");
 	    FunctionProvider func = null;
 	    if (MyFunctionProvider.match(req)){
@@ -64,7 +65,7 @@ public class MyEndpoint{
 		}    
 	    if (func != null){
 	    	Response resp = func.process(req);
-		    String ret = MyFormatter.parseToFormat(resp);
+		    String ret = mf.parseToFormat(resp);
 		    pw.println(ret);
 	    }
 	}

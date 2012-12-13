@@ -28,7 +28,7 @@ public class MyFormatter extends MessageFormatter{
 		return supportedTypes;
 	}
 	
-	public static Request parseToRequest(String data){
+	public Request parseToRequest(String data){
 		Request req = new Request();
 		//build header object
 		//content type is critical for dyanamic soap version parsing!
@@ -66,7 +66,7 @@ public class MyFormatter extends MessageFormatter{
 	}
 	
 	private static SOAPBodyElement getMethodElement(SOAPBody body){
-		Iterator elemIter = body.getChildElements();
+		Iterator<?> elemIter = body.getChildElements();
 		if (!elemIter.hasNext()){
 			return null;
 		}
@@ -74,13 +74,13 @@ public class MyFormatter extends MessageFormatter{
 		return (SOAPBodyElement)elemIter.next();
 	}
 	private static HashMap<String,String[]> parseParams(SOAPBodyElement methodElem){
-		Iterator paramIter = methodElem.getChildElements();
+		Iterator<?> paramIter = methodElem.getChildElements();
 		//handle child elements (params) of method
 		//Supports named params
 		HashMap<String,String[]> params = new HashMap<String,String[]>(); 
 		while (paramIter.hasNext()){
 			SOAPBodyElement param = (SOAPBodyElement)paramIter.next();
-			Iterator itemIter = param.getChildElements();
+			Iterator<?> itemIter = param.getChildElements();
 			ArrayList<String> items = new ArrayList<String>();
 			//for each element inside the param
 			while (itemIter.hasNext()){
@@ -105,7 +105,7 @@ public class MyFormatter extends MessageFormatter{
 		return elem.getElementName().getLocalName();
 	}
 
-	public static String parseToFormat(Response resp) {
+	public String parseToFormat(Response resp) {
 		SOAPMessage soapMessage = null;
 		try {
 			soapMessage = buildMessage(resp);
