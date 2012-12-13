@@ -9,11 +9,13 @@ package com.thoughtress.jsp.gen;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class [aEndpoint.name /]{
+public class [aEndpoint.name/]{
+
 	public static void doGet(HttpServletRequest request, HttpServletResponse response){
 		PrintWriter pw = null;
 		try {
@@ -21,7 +23,6 @@ public class [aEndpoint.name /]{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	    //pw.println("Content-Type: " + request.getContentType());
 	    pw.println("<h1>Served by doGet</h1>");
 	}
 	public static void doPost(HttpServletRequest request, HttpServletResponse response){
@@ -39,17 +40,58 @@ public class [aEndpoint.name /]{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	    pw.println("Content-Type: " + request.getContentType());
-	    MessageFormatter fmtr = new MyFormatter();
-	    Request req = fmtr.parseToRequest(data.toString());
-	    Response resp = new Response();
-	    resp.responseTo(req);
-	    resp.setParam("foo", "bar");
-	    String ret = fmtr.parseToFormat(resp);
-	    pw.println(ret);
-		//for (String key : msg.getParamKeys()){
-			//pw.println("Param: " + key + " : " + msg.getParam(key));
-		//}	
+		//parse request using the correct MessageFormatter
+		MessageFormatter mf = null;
+		[for (mf : MessageFormatter | aEndpoint.formatters)]
+		[if (i = 1)]
+		if (Arrays.asList([mf.name/].getTypes()).contains(request.getContentType())){
+			mf = new [mf.name/]();	
+		}
+		[else]
+		else if (Arrays.asList([mf.name/].getTypes()).contains(request.getContentType())){
+			mf = new [mf.name/]();	
+		}
+		[/if]
+		[/for]
+		else {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+								   "Unsupported Content Type");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		Request req = mf.parseToRequest(data.toString());
+		
+	    FunctionProvider func = null;
+		[for (fp : FunctionProvider | aEndpoint.functions)]
+		[if (i = 1)]
+		if ([fp.name/].match(req)){
+	    	func = new [fp.name/]();
+	    }
+		[else]
+		else if ([fp.name/].match(req)){
+	    	func = new [fp.name/]();
+	    }
+		[/if]
+		[/for]
+	    else {
+			try {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND,
+								   "Requested Method Not Found");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}    
+	    if (func != null){
+	    	Response resp = func.process(req);
+		    String ret = mf.parseToFormat(resp);
+		    pw.println(ret);
+	    }
 	}
 }
 [/file]

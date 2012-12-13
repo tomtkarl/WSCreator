@@ -32,18 +32,18 @@ public class HelloWorld extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * @generated
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		[EndpointName /].respond(request, response);
+		[EndpointName /].doGet(request, response);
     }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * @generated
+	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    [EndpointName /].respond(request, response);
+		[EndpointName /].doPost(request, response);
 	}
 }
 [/file]
