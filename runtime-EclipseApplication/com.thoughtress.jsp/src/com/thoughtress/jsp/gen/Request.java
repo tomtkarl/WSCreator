@@ -12,5 +12,4 @@ public class Request extends Message{
 	public String getMethod(){
 		return method;
 	}
-
 }

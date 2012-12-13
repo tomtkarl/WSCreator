@@ -37,8 +37,9 @@ public class MyEndpoint{
 		//parse request using the correct MessageFormatter
 		MessageFormatter mf = null;
 		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
-			mf = new MyFormatter();			
-		} else {
+			mf = new MyFormatter();	
+		}
+		else {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
 								   "Unsupported Content Type");
@@ -49,11 +50,12 @@ public class MyEndpoint{
 			}
 		}
 		Request req = mf.parseToRequest(data.toString());
-	    //System.out.println("Method: " + req.getMethod() + "\n");
+		
 	    FunctionProvider func = null;
-	    if (MyFunctionProvider.match(req)){
+		if (MyFunctionProvider.match(req)){
 	    	func = new MyFunctionProvider();
-	    } else {
+	    }
+	    else {
 			try {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND,
 								   "Requested Method Not Found");

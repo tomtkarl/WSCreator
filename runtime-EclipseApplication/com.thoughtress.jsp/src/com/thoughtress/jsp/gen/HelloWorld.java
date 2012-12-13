@@ -26,7 +26,7 @@ public class HelloWorld extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * @generated
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MyEndpoint.doGet(request, response);
@@ -34,9 +34,9 @@ public class HelloWorld extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * @generated
+	 * 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      MyEndpoint.doPost(request, response);
-  }
+		MyEndpoint.doPost(request, response);
+	}
 }
