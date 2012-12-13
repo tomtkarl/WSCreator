@@ -14,8 +14,11 @@ public class MyFunctionProvider extends FunctionProvider {
 	public Response process(Request req) {
 		Response resp = new Response();
 		resp.setResponseName(req.getMethod() + "Response");
-	    resp.setParam("foo", new String[]{"bar"});
-	    resp.setParam("Karl", new String[]{"AWESOME", "things", "are", "happening"});
+		for (String key : req.getParamKeys()){
+			resp.setParam(key, req.getParam(key));
+		}
+	    resp.setParam("named", new String[]{"param"});
+	    resp.setParam("list", new String[]{"params", "grouped", "as", "items"});
 	    return resp;
 	}
 
