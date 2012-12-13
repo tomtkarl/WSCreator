@@ -11,8 +11,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="formatters" lowerBound="1"
         upperBound="-1" eType="#//MessageFormatter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" eType="#//FunctionProvider"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functions" lowerBound="1"
+        upperBound="-1" eType="#//FunctionProvider" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XmlMessageFormatter" eSuperTypes="#//MessageFormatter"/>
   <eClassifiers xsi:type="ecore:EClass" name="MessageFormatter">
