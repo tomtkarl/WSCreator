@@ -42,6 +42,9 @@ public class MyEndpoint{
 		else if (Arrays.asList(OtherFormatter.getTypes()).contains(request.getContentType())){
 			mf = new OtherFormatter();	
 		}
+		else if (Arrays.asList(MyGenericFormatter.getTypes()).contains(request.getContentType())){
+			mf = new MyGenericFormatter();	
+		}
 		else {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
