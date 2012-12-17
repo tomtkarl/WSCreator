@@ -39,6 +39,9 @@ public class MyEndpoint{
 		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
 			mf = new MyFormatter();	
 		}
+		else if (Arrays.asList(OtherFormatter.getTypes()).contains(request.getContentType())){
+			mf = new OtherFormatter();	
+		}
 		else {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -54,6 +57,9 @@ public class MyEndpoint{
 	    FunctionProvider func = null;
 		if (MyFunctionProvider.match(req)){
 	    	func = new MyFunctionProvider();
+	    }
+		else if (OtherFunctionProvider.match(req)){
+	    	func = new OtherFunctionProvider();
 	    }
 	    else {
 			try {
