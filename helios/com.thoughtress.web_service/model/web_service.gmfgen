@@ -117,6 +117,55 @@
         </modelFacet>
       </labels>
     </childNodes>
+    <childNodes
+        visualID="3004"
+        editPartClassName="GenericMessageFormatterEditPart"
+        itemSemanticEditPolicyClassName="GenericMessageFormatterItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="GenericMessageFormatterCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="GenericMessageFormatterGraphicalNodeEditPolicy"
+        createCommandClassName="GenericMessageFormatterCreateCommand"
+        containers="//@diagram/@compartments.0">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="GenericMessageFormatterEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GenericMessageFormatterFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GenericMessageFormatterFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGenericMessageFormatterNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GenericMessageFormatterFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.lightBlue);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureGenericMessageFormatterNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureGenericMessageFormatterNameFigure.setText(&quot;&quot;);&#xA;&#xA;this.add(fFigureGenericMessageFormatterNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGenericMessageFormatterNameFigure() {&#xA;&#x9;&#x9;return fFigureGenericMessageFormatterNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedBackground="true"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="web_service.genmodel#//web_service/GenericMessageFormatter"/>
+        <containmentMetaFeature
+            href="web_service.genmodel#//web_service/Endpoint/formatters"/>
+        <childMetaFeature
+            href="web_service.genmodel#//web_service/Endpoint/formatters"/>
+      </modelFacet>
+      <labels
+          visualID="5007"
+          editPartClassName="GenericMessageFormatterNameEditPart"
+          itemSemanticEditPolicyClassName="GenericMessageFormatterNameItemSemanticEditPolicy"
+          elementIcon="true">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureGenericMessageFormatterNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="">
+          <metaFeatures
+              href="web_service.genmodel#//web_service/MessageFormatter/name"/>
+        </modelFacet>
+      </labels>
+    </childNodes>
     <topLevelNodes
         visualID="2001"
         editPartClassName="EndpointEditPart"
@@ -171,7 +220,7 @@
         editPartClassName="EndpointFormattersCompartmentEditPart"
         itemSemanticEditPolicyClassName="EndpointFormattersCompartmentItemSemanticEditPolicy"
         canonicalEditPolicyClassName="EndpointFormattersCompartmentCanonicalEditPolicy"
-        childNodes="//@diagram/@childNodes.0"
+        childNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.2"
         title="FormattersCompartment"
         needsTitle="false"
         node="//@diagram/@topLevelNodes.0">
@@ -216,6 +265,11 @@
             title="SOAP XML Formatter"
             description="Create new XmlMessageFormatter"
             genNodes="//@diagram/@childNodes.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Generic Message Formatter"
+            description="Create new GenericMessageFormatter"
+            genNodes="//@diagram/@childNodes.2"/>
       </groups>
     </palette>
     <preferencePages
@@ -258,6 +312,9 @@
         parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@childNodes.1"/>
     <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@childNodes.2"/>
+    <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
   </navigator>
@@ -287,7 +344,7 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus
       context="//@diagram">

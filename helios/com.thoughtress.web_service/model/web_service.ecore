@@ -21,4 +21,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="FunctionProvider">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericMessageFormatter" eSuperTypes="#//MessageFormatter"/>
 </ecore:EPackage>

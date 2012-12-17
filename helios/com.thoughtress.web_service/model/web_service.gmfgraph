@@ -65,6 +65,22 @@
           accessor="getFigureFunctionProviderNameFigure"
           figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="GenericMessageFormatterFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="GenericMessageFormatterFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="lightBlue"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="GenericMessageFormatterNameFigure"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureGenericMessageFormatterNameFigure"
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="Endpoint"
@@ -75,6 +91,9 @@
   <nodes
       name="FunctionProvider"
       figure="FunctionProviderFigure"/>
+  <nodes
+      name="GenericMessageFormatter"
+      figure="GenericMessageFormatterFigure"/>
   <compartments
       name="FormattersCompartment"
       figure="EndpointFigure"
@@ -97,4 +116,8 @@
       name="XmlMessageFormatterName"
       figure="XmlMessageFormatterFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels
+      name="GenericMessageFormatterName"
+      figure="GenericMessageFormatterFigure"
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
 </gmfgraph:Canvas>

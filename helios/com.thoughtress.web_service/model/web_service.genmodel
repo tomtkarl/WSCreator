@@ -21,5 +21,6 @@
     <genClasses ecoreClass="web_service.ecore#//FunctionProvider">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//FunctionProvider/name"/>
     </genClasses>
+    <genClasses ecoreClass="web_service.ecore#//GenericMessageFormatter"/>
   </genPackages>
 </genmodel:GenModel>
