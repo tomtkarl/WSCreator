@@ -7,22 +7,22 @@ package com.thoughtress.jsp.gen;
 
 public class [aGenericMessageFormatter.name/] extends MessageFormatter{
 	public static String['[]'/] getTypes(){
-	//[protected ('method')]
-		throw new UnsupportedOperationException("Not yet implemented");
-	//[/protected]
+        //[protected ('getTypes')]
+        throw new UnsupportedOperationException("Not yet implemented");
+        //[/protected]
 	}
 	@Override
 	public String parseToFormat(Response answer) {
-	//[protected ('method')]
+		//[protected ('parseToFormat')]
 		throw new UnsupportedOperationException("Not yet implemented");
-	//[/protected]
+		//[/protected]
 	}
 	
 	@Override
 	public Request parseToRequest(String data) {
-	//[protected ('method')]
+		//[protected ('parseToRequest')]
 		throw new UnsupportedOperationException("Not yet implemented");
-	//[/protected]
+		//[/protected]
 	}
 	
 }
