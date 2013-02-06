@@ -10,9 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+*The Endpoint for the named Web Service
+*
+*/
 @WebServlet("/MyEndpoint")
 public class MyEndpoint extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	*Handle GET requests to the service
+	*
+	*@param request   HttpServletRequest object representing all request attributes
+	*@param response  HttpServletResponse to be used in the construction of a response
+	*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response){
 		PrintWriter pw = null;
 		try {
@@ -22,6 +33,13 @@ public class MyEndpoint extends HttpServlet{
 		}
 	    pw.println("<h1>Served by doGet</h1>");
 	}
+	
+	/**
+	*Handle POST requests to the service
+	*
+	*@param request   HttpServletRequest object representing all request attributes
+	*@param response  HttpServletResponse to be used in the construction of a response
+	*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		StringBuffer data = new StringBuffer();
 		  String line = null;
