@@ -1,5 +1,9 @@
 package com.thoughtress.jsp.gen;
 
+/**
+*A FunctionProvider for the Web Service<br />
+*Implements one or more functions to be made available through the service.
+*/
 public class MyFunctionProvider extends FunctionProvider {
 	//Start of user code classvars
 private static String[] methods = {"GetStockPrice"};

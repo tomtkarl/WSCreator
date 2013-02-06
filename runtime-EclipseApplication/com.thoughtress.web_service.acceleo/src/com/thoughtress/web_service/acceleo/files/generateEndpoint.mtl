@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-*The Endpoint for the named Web Service
+*The Endpoint/Servlet entry point for the named Web Service
 *
 */
 @WebServlet("/[aEndpoint.name/]")

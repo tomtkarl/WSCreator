@@ -5,6 +5,10 @@
 [file (aFunctionProvider.name + '.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+/**
+*A FunctionProvider for the Web Service<br />
+*Implements one or more functions to be made available through the service.
+*/
 public class [aFunctionProvider.name/] extends FunctionProvider {
 	//[protected ('classvars')]
 	

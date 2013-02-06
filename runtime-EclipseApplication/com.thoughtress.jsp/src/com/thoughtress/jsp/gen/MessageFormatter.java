@@ -1,5 +1,9 @@
 package com.thoughtress.jsp.gen;
 
+/**
+*The MessageFormatter abstract class.<br />
+*MessageFormatter is subclassed by all Message Formatter implementations.
+*/
 public abstract class MessageFormatter {
 	/**
 	*Advertise the message formats supported by this formatter. <br />

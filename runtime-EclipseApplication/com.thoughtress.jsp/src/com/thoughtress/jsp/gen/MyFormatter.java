@@ -20,6 +20,10 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
+/**
+*A Message Formatter for the web service.<br />
+*Supports the SOAP+XML MIME types.
+*/
 public class MyFormatter extends MessageFormatter{
 	
 	private static String[] supportedTypes = {"text/xml", "application/soap+xml"};

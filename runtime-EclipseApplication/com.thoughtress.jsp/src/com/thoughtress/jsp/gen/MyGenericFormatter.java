@@ -1,5 +1,9 @@
 package com.thoughtress.jsp.gen;
 
+/**
+*A Message Formatter for the Web Service<br />
+*Implements one or more Message Formats to support the web service.
+*/
 public class MyGenericFormatter extends MessageFormatter{
 	public static String[] getTypes(){
         //Start of user code getTypes

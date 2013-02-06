@@ -2,6 +2,9 @@ package com.thoughtress.jsp.gen;
 
 import java.util.HashMap;
 
+/**
+*A generic Message class to be subclassed by specialised Message types.
+*/
 public class Message {
 	private HashMap<String, String[]> params;
 	public Message(){

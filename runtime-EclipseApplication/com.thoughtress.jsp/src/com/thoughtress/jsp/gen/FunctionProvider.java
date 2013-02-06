@@ -1,5 +1,9 @@
 package com.thoughtress.jsp.gen;
 
+/**
+*The FunctionProvider abstract class<br />
+*FunctionProvider is subclassed by all Function Provider implementations.
+*/
 public abstract class FunctionProvider {
 	public static Boolean match(Request req){
 		throw new UnsupportedOperationException("Not yet implemented");

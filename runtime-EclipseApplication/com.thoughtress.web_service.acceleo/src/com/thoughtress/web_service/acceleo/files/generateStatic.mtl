@@ -7,6 +7,9 @@ package com.thoughtress.jsp.gen;
 
 import java.util.HashMap;
 
+/**
+*A generic Message class to be subclassed by specialised Message types.
+*/
 public class Message {
 	private HashMap<String, String['[]'/]> params;
 	public Message(){
@@ -63,6 +66,9 @@ public class Message {
 [file ('Request.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+/**
+*A specific Message type representing the <b>incoming</b> web service request.
+*/
 public class Request extends Message{
 	private String method;
 	/**
@@ -92,6 +98,9 @@ public class Request extends Message{
 [file ('Response.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+/**
+*A specific Message type representing the <b>outgoing</b> web service response.
+*/
 public class Response extends Message{
 	private String responseName;
 	/**
@@ -120,6 +129,10 @@ public class Response extends Message{
 [file ('MessageFormatter.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+/**
+*The MessageFormatter abstract class.<br />
+*MessageFormatter is subclassed by all Message Formatter implementations.
+*/
 public abstract class MessageFormatter {
 	/**
 	*Advertise the message formats supported by this formatter. <br />
@@ -154,6 +167,10 @@ public abstract class MessageFormatter {
 [file ('FunctionProvider.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+/**
+*The FunctionProvider abstract class<br />
+*FunctionProvider is subclassed by all Function Provider implementations.
+*/
 public abstract class FunctionProvider {
 	public static Boolean match(Request req){
 		throw new UnsupportedOperationException("Not yet implemented");

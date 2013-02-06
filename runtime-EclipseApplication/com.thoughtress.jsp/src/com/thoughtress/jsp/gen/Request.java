@@ -1,5 +1,8 @@
 package com.thoughtress.jsp.gen;
 
+/**
+*A specific Message type representing the <b>incoming</b> web service request.
+*/
 public class Request extends Message{
 	private String method;
 	/**
