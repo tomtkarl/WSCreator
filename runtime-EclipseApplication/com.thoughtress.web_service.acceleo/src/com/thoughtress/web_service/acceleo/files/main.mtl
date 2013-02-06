@@ -1,7 +1,6 @@
 [comment encoding = UTF-8 /]
 [module main('http://thoughtress.com/WebService')/]
 [import com::thoughtress::web_service::acceleo::files::generateEndpoint/]
-[import com::thoughtress::web_service::acceleo::files::generateServlet/]
 [import com::thoughtress::web_service::acceleo::files::generateStatic/]
 
 
@@ -9,7 +8,6 @@
 	
 	[comment @main /]
 	[aService.endpoint.generateEndpoint()/]
-	[aService.generateServlet()/]
 	[aService.generateStatic() /]
 	
 [/template]
