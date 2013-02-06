@@ -2,8 +2,8 @@ package com.thoughtress.jsp.gen;
 
 public abstract class MessageFormatter {
 	/**
-	*Advertise the message formats supported by this formatter.
-	*It is suggested to proper MIME types.
+	*Advertise the message formats supported by this formatter. <br />
+	*It is suggested to use proper MIME types.
 	*
 	*@return A String array containing the the supported message formats.
 	*/
