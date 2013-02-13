@@ -15,23 +15,22 @@ public class [aFunctionProvider.name/] extends FunctionProvider {
 	//[/protected]
 	/**
 	*Match the functions defined by this FunctionProvider to
-	*the method name of the given Request.
+	*the method of the given MessagePart.
 	*
-	*@param  req  The Request object to be matched against.
-	*@return      A Boolean value denoting whether this FunctionProvider matches the given Request.
+	*@param  req  The MessagePart object to be matched against.
+	*@return      A Boolean value denoting whether this FunctionProvider matches the given MessagePart.
 	*/
-	public static Boolean match(Request req) {
+	public static Boolean match(MessagePart req) {
 		//[protected ('match')]
         throw new UnsupportedOperationException("Not yet implemented");
         //[/protected]
 	}
 
-	public Response process(Request req) {
+	public MessagePart process(MessagePart req) {
 		//[protected ('process')]
         throw new UnsupportedOperationException("Not yet implemented");
         //[/protected]
 	}
-
 }
 [/file]
 [/template]

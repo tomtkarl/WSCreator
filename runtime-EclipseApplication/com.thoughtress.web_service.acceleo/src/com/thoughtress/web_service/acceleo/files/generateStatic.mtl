@@ -2,129 +2,77 @@
 [module generateStatic('http://thoughtress.com/WebService')/]
 
 [template public generateStatic(aService : Service)]
-[file ('Message.java', false, 'UTF-8')]
+[file ('MessagePart.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
 *A generic Message class to be subclassed by specialised Message types.
 */
-public class Message {
-	private HashMap<String, String['[]'/]> params;
-	public Message(){
-		this.params = new HashMap<String, String['[]'/]>();
+public class MessagePart{
+	public HashMap<String, String> attrs;
+	public ArrayList<MessagePart> children;
+	public String textValue;
+	public String name;
+	public MessagePart(){
+		this.attrs = new HashMap<String, String>();
+		this.children = new ArrayList<MessagePart>();
+		this.textValue = "";
+		this.name = "";
+	}
+	public boolean isText(){
+		return this.textValue != "";
 	}
 	/**
 	*Set a key,value pair in the Message parameters.
 	*This will overwrite existing keys if already set.
 	*
-	*@param key   The key to be inserted
-	*@param value A String array containing the value(s). Use a single element array for single values.
+	*@param key   The key to be inserted.
+	*@param value The String value for the given key.
 	*/
-	public void setParam(String key, String['[]'/] value){
-		params.put(key, value);
+	public void setAttr(String key, String value){
+		this.attrs.put(key, value);
 	}
 	/**
 	*Extend the Message parameters using key,value pairs from
 	*the given HashMap.
 	*This will overwrite existing keys if already set.
 	*
-	*@param map   A HashMap<String, String['[]'/]> containing the key,value
+	*@param map   A HashMap<String, String> containing the key,value
 	*             pairs to extend the Message params by.
 	*/
-	public void setParams(HashMap<String, String['[]'/]> map){
+	public void setAttrs(HashMap<String, String> map){
 		for (String key : map.keySet()){
-			params.put(key, map.get(key));
+			this.attrs.put(key, map.get(key));
 		}
 	}
 	/**
 	*@return A String array containing the Message parameter keys.
 	*/
-	public String['[]'/] getParamKeys(){
-		return params.keySet().toArray(new String['[0]'/]);
+	public String['[]'/] getAttrKeys(){
+		return this.attrs.keySet().toArray(new String['[0]'/]);
 	}
 	/**
 	*Get a required value from the Message params by key.
 	*
 	*@param key The key indexing the required value in Message params.
-	*@return A String array containing the parameter value for the given key.
+	*@return The String parameter value for the given key.
 	*/
-	public String['[]'/] getParam(String key){
-		return params.get(key);
+	public String getAttr(String key){
+		return this.attrs.get(key);
 	}
 	/**
 	*Get all Message params
 	*
-	*@return A HashMap<String,String['[]'/]> containing all key,value pairs.
+	*@return A HashMap<String,String> containing all key,value pairs.
 	*/
-	public HashMap<String,String['[]'/]> getParams(){
-		return params;
+	public HashMap<String,String> getAttrs(){
+		return this.attrs;
 	}
 }
-[/file]
-[file ('Request.java', false, 'UTF-8')]
-package com.thoughtress.jsp.gen;
 
-/**
-*A specific Message type representing the <b>incoming</b> web service request.
-*/
-public class Request extends Message{
-	private String method;
-	/**
-	*Create a new Request object with an empty method
-	*/
-	public Request(){
-		super();
-		method = "";
-	}
-	/**
-	*Set the method of the Request
-	*
-	*@param meth  The method name of the Request
-	*/
-	public void setMethod(String meth){
-		method = meth;
-	}
-	/**
-	*@return The method name
-	*/
-	public String getMethod(){
-		return method;
-	}
-}
-[/file]
-
-[file ('Response.java', false, 'UTF-8')]
-package com.thoughtress.jsp.gen;
-
-/**
-*A specific Message type representing the <b>outgoing</b> web service response.
-*/
-public class Response extends Message{
-	private String responseName;
-	/**
-	*Create a new Response object with an empty response name
-	*/
-	public Response(){
-		super();
-		responseName = "";
-	}
-	/**
-	*Set the response name of the Response
-	*
-	*@param name  The response name of the Response
-	*/
-	public void setResponseName(String name){
-		responseName = name;
-	}
-	/**
-	*@return The response name
-	*/
-	public String getResponseName(){
-		return responseName;
-	}
-}
 [/file]
 [file ('MessageFormatter.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
@@ -148,18 +96,18 @@ public abstract class MessageFormatter {
 	*This method may return null if the data is not a recognised message format.
 	*
 	*@param data  The data string to be parsed
-	*@return      A Request object derived from the given data.
+	*@return      A MessagePart object derived from the given data.
 	*/
-	public Request parseToRequest(String data){
+	public MessagePart parseToRequest(String data){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
-	*Parse the given Response object to a message format.
+	*Parse the given MessagePart object to a message format.
 	*
-	*@param  answer  The Response object to be parsed to string
-	*@return         A Request object derived from the given data.
+	*@param  answer  The MessagePart object to be parsed to string
+	*@return         A MessagePart object derived from the given data.
 	*/
-	public String parseToFormat(Response answer){
+	public String parseToFormat(MessagePart answer){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 }
@@ -172,16 +120,16 @@ package com.thoughtress.jsp.gen;
 *FunctionProvider is subclassed by all Function Provider implementations.
 */
 public abstract class FunctionProvider {
-	public static Boolean match(Request req){
+	public static Boolean match(MessagePart req){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
-	*Process the given Request using the defined method.
+	*Process the given MessagePart using the defined method.
 	*
-	*@param  req  The Request object to processed.
-	*@return      A Response object constructed using the results of processing the request.
+	*@param  req  The MessagePart object to processed.
+	*@return      A MessagePart object constructed using the results of processing the request.
 	*/
-	public Response process(Request req){
+	public MessagePart process(MessagePart req){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 }

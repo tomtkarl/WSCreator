@@ -76,7 +76,7 @@ public class MyEndpoint extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-		Request req = mf.parseToRequest(data.toString());
+		MessagePart req = mf.parseToRequest(data.toString());
 		
 	    FunctionProvider func = null;
 		if (MyFunctionProvider.match(req)){
@@ -96,7 +96,7 @@ public class MyEndpoint extends HttpServlet{
 			}
 		}    
 	    if (func != null){
-	    	Response resp = func.process(req);
+	    	MessagePart resp = func.process(req);
 		    String ret = mf.parseToFormat(resp);
 		    pw.println(ret);
 	    }

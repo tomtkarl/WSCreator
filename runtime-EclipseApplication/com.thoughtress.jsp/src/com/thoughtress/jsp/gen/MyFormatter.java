@@ -1,24 +1,28 @@
 package com.thoughtress.jsp.gen;
 
+import static org.w3c.dom.Node.ELEMENT_NODE;
+import static org.w3c.dom.Node.TEXT_NODE;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.Name;
+import javax.xml.soap.Node;
 import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPBodyElement;
 import javax.xml.soap.SOAPConstants;
 import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPFactory;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
+
+import org.w3c.dom.Text;
 
 /**
 *A Message Formatter for the web service.<br />
@@ -32,13 +36,10 @@ public class MyFormatter extends MessageFormatter{
 		return supportedTypes;
 	}
 	
-	public Request parseToRequest(String data){
-		Request req = new Request();
-		//build header object
-		//content type is critical for dyanamic soap version parsing!
+	@Override
+	public MessagePart parseToRequest(String data){
 		MimeHeaders headers = new MimeHeaders();
 		headers.addHeader("Content-Type", "application/soap+xml");
-		//transform xml string to InputStream
 		InputStream xmlStream = new ByteArrayInputStream(data.getBytes());
 		//Construct SOAPMessage from xml
 		SOAPMessage message = null;
@@ -62,57 +63,48 @@ public class MyFormatter extends MessageFormatter{
 		if (body == null){
 			return null;
 		}
-		SOAPBodyElement callMethodElement = getMethodElement(body);
-		String callMethodName = getElementName(callMethodElement);
-		req.setMethod(callMethodName);
-		req.setParams(parseParams(callMethodElement));	
-		return req;
+		MessagePart msg = buildMessageRoot(body);
+		return msg;
 	}
 	
-	private static SOAPBodyElement getMethodElement(SOAPBody body){
-		Iterator<?> elemIter = body.getChildElements();
-		if (!elemIter.hasNext()){
+	private static MessagePart buildMessageRoot(SOAPBody body){
+		Iterator<Node> elemIter = body.getChildElements();
+		if (elemIter.hasNext()){
+			Node next = elemIter.next();
+			return buildMessagePart((SOAPElement)next);
+		} else {
+			//TODO: Send error - no root!
 			return null;
 		}
-		//first element in SOAPBody is method name
-		return (SOAPBodyElement)elemIter.next();
 	}
-	private static HashMap<String,String[]> parseParams(SOAPBodyElement methodElem){
-		Iterator<?> paramIter = methodElem.getChildElements();
-		//handle child elements (params) of method
-		//Supports named params
-		HashMap<String,String[]> params = new HashMap<String,String[]>(); 
-		while (paramIter.hasNext()){
-			SOAPBodyElement param = (SOAPBodyElement)paramIter.next();
-			Iterator<?> itemIter = param.getChildElements();
-			ArrayList<String> items = new ArrayList<String>();
-			//for each element inside the param
-			while (itemIter.hasNext()){
-				Object next = itemIter.next();
-				//it's either a list of more elements
-				if (next instanceof SOAPBodyElement){
-					SOAPBodyElement item = (SOAPBodyElement)next;
-					items.add(item.getTextContent());
-				//or a simple text node
-				} else {
-					String value = param.getTextContent();
-					items.add(value);
-				}
+	
+	private static MessagePart buildMessagePart(SOAPElement elem){
+		MessagePart part = new MessagePart();
+		part.name = getElementName(elem);
+		System.out.println("buildMessagePart> " + part.name);
+		Iterator<Node> elemIter = elem.getChildElements();
+		while (elemIter.hasNext()){
+			Node next = elemIter.next();
+			short type = next.getNodeType();
+			if (type == ELEMENT_NODE){
+				part.children.add(buildMessagePart((SOAPElement)next));
+			} else if (type == TEXT_NODE){
+				part.textValue = ((Text)next).getTextContent();
+				System.out.println("buildMessagePart:: " + part.textValue);
 			}
-			String paramName = getElementName(param);
-			params.put(paramName, items.toArray(new String[0]));
 		}
-		return params;
+		return part;
 	}
 
-	private static String getElementName(SOAPBodyElement elem){
+	private static String getElementName(SOAPElement elem){
 		return elem.getElementName().getLocalName();
 	}
 
-	public String parseToFormat(Response resp) {
+	@Override
+	public String parseToFormat(MessagePart resp) {
 		SOAPMessage soapMessage = null;
 		try {
-			soapMessage = buildMessage(resp);
+			soapMessage = buildSOAPMessageRoot(resp);
 		} catch (SOAPException e) {
 			e.printStackTrace();
 		}
@@ -127,31 +119,30 @@ public class MyFormatter extends MessageFormatter{
 		String formatted = new String(out.toByteArray());
 		return formatted;
 	}
-	
-	private static SOAPMessage buildMessage(Response resp) throws SOAPException{
+
+	private static SOAPMessage buildSOAPMessageRoot(MessagePart root) throws SOAPException{
+		final SOAPFactory soapFactory = SOAPFactory.newInstance();
 		SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
 		SOAPPart soapPart = soapMessage.getSOAPPart();
-	    SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
-	    SOAPBody soapBody = soapEnvelope.getBody();
-	    //first method return node
-	    Name bodyName = soapEnvelope.createName(resp.getResponseName(), 
-	    		"m", "http://thoughtress.com/WebService");
-	    SOAPBodyElement bodyElement = soapBody.addBodyElement(bodyName);
-	    //key,value response pairs
-	    for (String key : resp.getParamKeys()){
-	    	SOAPElement child = bodyElement.addChildElement(
-	    			soapEnvelope.createName(key, "m", "http://thoughtress.com/WebService"));
-		    String[] values = resp.getParam(key);
-		    if (values.length > 1){
-		    	for (String val : values){
-		    		SOAPElement item = child.addChildElement(
-		    				soapEnvelope.createName("item", "m", "http://thoughtress.com/WebService"));
-		    		item.addTextNode(val);
-		    	} 
-		    } else {
-	    		child.addTextNode(values[0]);
+	    final SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
+	    SOAPBody soapBody = soapEnvelope.getBody();	    
+	    class NodeBuilder{
+	    	public SOAPElement buildNode(MessagePart part) throws SOAPException{
+	    		System.out.println("buildNode> " + part.name + ": " + part.isText());
+	    	    Name partName = soapEnvelope.createName(part.name);
+	    	    SOAPElement elem = soapFactory.createElement(partName);
+	    	    for (MessagePart childPart : part.children){
+	    	    	elem.addChildElement(buildNode(childPart));
+	    	    }
+    		    if (part.isText()){
+    		    	elem.addTextNode(part.textValue);
+    		    } 
+	    	    return elem;
 	    	}
 	    }
+	    NodeBuilder nlb = new NodeBuilder();
+	    soapBody.addChildElement(nlb.buildNode(root));
 	    return soapMessage;
 	}
 }
+

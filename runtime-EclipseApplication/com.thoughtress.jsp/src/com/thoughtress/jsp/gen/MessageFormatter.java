@@ -19,18 +19,18 @@ public abstract class MessageFormatter {
 	*This method may return null if the data is not a recognised message format.
 	*
 	*@param data  The data string to be parsed
-	*@return      A Request object derived from the given data.
+	*@return      A MessagePart object derived from the given data.
 	*/
-	public Request parseToRequest(String data){
+	public MessagePart parseToRequest(String data){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
-	*Parse the given Response object to a message format.
+	*Parse the given MessagePart object to a message format.
 	*
-	*@param  answer  The Response object to be parsed to string
-	*@return         A Request object derived from the given data.
+	*@param  answer  The MessagePart object to be parsed to string
+	*@return         A MessagePart object derived from the given data.
 	*/
-	public String parseToFormat(Response answer){
+	public String parseToFormat(MessagePart answer){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 }

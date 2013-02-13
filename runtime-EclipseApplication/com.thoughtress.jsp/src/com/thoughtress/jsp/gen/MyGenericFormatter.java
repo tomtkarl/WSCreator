@@ -12,17 +12,15 @@ throw new UnsupportedOperationException("Not yet implemented");
 //End of user code
 	}
 	@Override
-	public String parseToFormat(Response answer) {
-		//Start of user code parseToFormat
-throw new UnsupportedOperationException("Not yet implemented");
-//End of user code
-	}
-	
-	@Override
-	public Request parseToRequest(String data) {
+	public MessagePart parseToRequest(String data) {
 		//Start of user code parseToRequest
 throw new UnsupportedOperationException("Not yet implemented");
 //End of user code
 	}
-	
+	@Override
+	public String parseToFormat(MessagePart answer) {
+		//Start of user code parseToFormat
+throw new UnsupportedOperationException("Not yet implemented");
+//End of user code
+	}	
 }
