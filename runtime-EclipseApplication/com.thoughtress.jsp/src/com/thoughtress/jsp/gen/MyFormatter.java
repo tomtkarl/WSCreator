@@ -81,15 +81,20 @@ public class MyFormatter extends MessageFormatter{
 	private static MessagePart buildMessagePart(SOAPElement elem){
 		MessagePart part = new MessagePart();
 		part.name = getElementName(elem);
-		System.out.println("buildMessagePart> " + part.name);
+		Iterator<Name> attrIter = elem.getAllAttributes();
+		while (attrIter.hasNext()){
+			Name nextAttr = attrIter.next();
+			part.setAttr(nextAttr.getLocalName(), elem.getAttributeValue(nextAttr));
+		}
+		System.out.println("buildMessagePart> " + part.name +"::"+ part.attrs);
 		Iterator<Node> elemIter = elem.getChildElements();
 		while (elemIter.hasNext()){
-			Node next = elemIter.next();
-			short type = next.getNodeType();
+			Node nextElem = elemIter.next();
+			short type = nextElem.getNodeType();
 			if (type == ELEMENT_NODE){
-				part.children.add(buildMessagePart((SOAPElement)next));
+				part.children.add(buildMessagePart((SOAPElement)nextElem));
 			} else if (type == TEXT_NODE){
-				part.textValue = ((Text)next).getTextContent();
+				part.textValue = ((Text)nextElem).getTextContent();
 				System.out.println("buildMessagePart:: " + part.textValue);
 			}
 		}
@@ -131,6 +136,10 @@ public class MyFormatter extends MessageFormatter{
 	    		System.out.println("buildNode> " + part.name + ": " + part.isText());
 	    	    Name partName = soapEnvelope.createName(part.name);
 	    	    SOAPElement elem = soapFactory.createElement(partName);
+	    	    for (String key : part.getAttrKeys()){
+	    	    	elem.addAttribute(soapEnvelope.createName(key),
+	    	    					  part.getAttr(key));
+	    	    }
 	    	    for (MessagePart childPart : part.children){
 	    	    	elem.addChildElement(buildNode(childPart));
 	    	    }
@@ -145,4 +154,3 @@ public class MyFormatter extends MessageFormatter{
 	    return soapMessage;
 	}
 }
-
