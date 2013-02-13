@@ -81,6 +81,13 @@ public class MyFormatter extends MessageFormatter{
 	private static MessagePart buildMessagePart(SOAPElement elem){
 		MessagePart part = new MessagePart();
 		part.name = getElementName(elem);
+		Iterator<String> nsIter = elem.getNamespacePrefixes();
+		while (nsIter.hasNext()){
+			String nsPrefix = nsIter.next();
+			part.setOption("nsPrefix", nsPrefix);
+			part.setOption("nsURI", elem.getNamespaceURI(nsPrefix));
+			break;
+		}
 		Iterator<Name> attrIter = elem.getAllAttributes();
 		while (attrIter.hasNext()){
 			Name nextAttr = attrIter.next();
@@ -136,6 +143,11 @@ public class MyFormatter extends MessageFormatter{
 	    		System.out.println("buildNode> " + part.name + ": " + part.isText());
 	    	    Name partName = soapEnvelope.createName(part.name);
 	    	    SOAPElement elem = soapFactory.createElement(partName);
+	    	    if (part.options.containsKey("nsURI") && 
+	    	    	part.options.containsKey("nsPrefix")){
+	    	    	elem.addNamespaceDeclaration(part.options.get("nsPrefix"),
+	    	    								 part.options.get("nsURI"));
+	    	    }
 	    	    for (String key : part.getAttrKeys()){
 	    	    	elem.addAttribute(soapEnvelope.createName(key),
 	    	    					  part.getAttr(key));
