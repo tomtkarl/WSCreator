@@ -2,7 +2,7 @@
 <ws:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://thoughtress.com/WebService">
   <endpoint name="MyEndpoint">
     <formatters xsi:type="ws:XmlMessageFormatter" name="MyFormatter"/>
-    <formatters xsi:type="ws:GenericMessageFormatter" name="MyGenericFormatter"/>
+    <formatters xsi:type="ws:GenericMessageFormatter" name="GetFormatter"/>
     <functions name="MyFunctionProvider"/>
     <functions name="GithubFunctionProvider"/>
   </endpoint>
