@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * The Endpoint/Servlet entry point for the named Web Service
  * 
  */
-@WebServlet("/MyEndpoint")
+@WebServlet("/MyEndpoint/*")
 public class MyEndpoint extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

@@ -30,6 +30,8 @@ public class GithubFunctionProvider extends FunctionProvider {
         if (req.name.equals("GitHubRequest")
                 && req.options.get("nsURI").equals("https://api.github.com")) {
             return true;
+        } else if (req.name.equals("GET") && req.attrs.get("pathInfo").contains("GitHubRequest")) {
+            return true;
         } else {
             return false;
         }
@@ -38,7 +40,12 @@ public class GithubFunctionProvider extends FunctionProvider {
 
     public MessagePart process(MessagePart req) {
         // Start of user code process
-        String url = req.children.get(0).textValue;
+        String url;
+        if (req.name.equals("GET")){
+            url = req.attrs.get("url");
+        } else {
+            url = req.children.get(0).textValue;
+        }
         String githubURL = "https://api.github.com";
 
         HttpClient httpclient = new DefaultHttpClient();
