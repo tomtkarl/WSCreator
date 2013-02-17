@@ -107,6 +107,9 @@ public class MessagePart{
 [/file]
 [file ('MessageFormatter.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
+//[protected ('imports')]
+import javax.servlet.http.HttpServletRequest;
+//[/protected]
 
 /**
 *The MessageFormatter abstract class.<br />
@@ -114,12 +117,12 @@ package com.thoughtress.jsp.gen;
 */
 public abstract class MessageFormatter {
 	/**
-	*Advertise the message formats supported by this formatter. <br />
-	*It is suggested to use proper MIME types.
+	*Match the MessageFormatter against the given request
 	*
-	*@return A String array containing the the supported message formats.
+	*@param A HttpServletRequest representing the current request
+	*@return A boolean whether this MessageFormatter matches.
 	*/
-	public static String['[]'/] getTypes(){
+	public static boolean match(HttpServletRequest request){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**

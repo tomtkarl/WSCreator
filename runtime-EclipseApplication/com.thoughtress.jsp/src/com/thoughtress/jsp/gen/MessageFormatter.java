@@ -1,5 +1,7 @@
 package com.thoughtress.jsp.gen;
-
+//Start of user code imports
+import javax.servlet.http.HttpServletRequest;
+//End of user code
 /**
 *The MessageFormatter abstract class.<br />
 *MessageFormatter is subclassed by all Message Formatter implementations.
@@ -11,7 +13,7 @@ public abstract class MessageFormatter {
 	*
 	*@return A String array containing the the supported message formats.
 	*/
-	public static String[] getTypes(){
+	public static boolean match(HttpServletRequest request){
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
