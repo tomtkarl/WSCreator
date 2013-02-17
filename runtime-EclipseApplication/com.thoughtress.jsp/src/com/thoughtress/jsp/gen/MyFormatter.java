@@ -41,7 +41,7 @@ public class MyFormatter extends MessageFormatter {
      */
     public static boolean match(HttpServletRequest req) {
         for (String type : supportedTypes) {
-            if (req.getContentType().equals(type)) {
+            if (req.getContentType() != null && req.getContentType().equals(type)) {
                 return true;
             }
         }
@@ -52,7 +52,7 @@ public class MyFormatter extends MessageFormatter {
      * @generated
      */
     @Override
-    public MessagePart parseToRequest(String data) {
+    public MessagePart parseToRequest(String data, HttpServletRequest request) {
         MimeHeaders headers = new MimeHeaders();
         headers.addHeader("Content-Type", "application/soap+xml");
         InputStream xmlStream = new ByteArrayInputStream(data.getBytes());

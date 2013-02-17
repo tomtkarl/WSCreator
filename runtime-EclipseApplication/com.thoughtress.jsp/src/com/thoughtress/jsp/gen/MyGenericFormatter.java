@@ -13,7 +13,7 @@ public class MyGenericFormatter extends MessageFormatter {
     }
 
     @Override
-    public MessagePart parseToRequest(String data) {
+    public MessagePart parseToRequest(String data, HttpServletRequest request) {
         // Start of user code parseToRequest
         throw new UnsupportedOperationException("Not yet implemented");
         // End of user code

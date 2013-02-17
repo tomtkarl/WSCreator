@@ -18,7 +18,7 @@ public class [aGenericMessageFormatter.name/] extends MessageFormatter{
         //[/protected]
 	}
 	@Override
-	public MessagePart parseToRequest(String data) {
+	public MessagePart parseToRequest(String data, HttpServletRequest request) {
 		//[protected ('parseToRequest')]
 		throw new UnsupportedOperationException("Not yet implemented");
 		//[/protected]

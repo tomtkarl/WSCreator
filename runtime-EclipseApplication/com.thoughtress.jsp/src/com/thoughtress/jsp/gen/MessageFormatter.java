@@ -27,7 +27,7 @@ public abstract class MessageFormatter {
      * @param data The data string to be parsed
      * @return A MessagePart object derived from the given data.
      */
-    public MessagePart parseToRequest(String data) {
+    public MessagePart parseToRequest(String data, HttpServletRequest request) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

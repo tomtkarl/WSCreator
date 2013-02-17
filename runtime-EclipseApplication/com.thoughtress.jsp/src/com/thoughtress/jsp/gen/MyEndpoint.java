@@ -30,7 +30,21 @@ public class MyEndpoint extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        pw.println("<h1>Served by doGet</h1>");
+        MessageFormatter mf = getFormatter(request);
+        if (mf == null) {
+            sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
+            return;
+        }
+        MessagePart req = mf.parseToRequest(null, request);
+
+        FunctionProvider func = getFunctionProvider(req);
+        if (func == null) {
+            sendError(response, HttpServletResponse.SC_NOT_FOUND, "Requested Method Not Found");
+            return;
+        }
+        MessagePart resp = func.process(req);
+        String ret = mf.parseToFormat(resp);
+        pw.println(ret);
     }
 
     /**
@@ -58,12 +72,14 @@ public class MyEndpoint extends HttpServlet {
         MessageFormatter mf = getFormatter(request);
         if (mf == null) {
             sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
+            return;
         }
-        MessagePart req = mf.parseToRequest(data.toString());
+        MessagePart req = mf.parseToRequest(data.toString(), request);
 
         FunctionProvider func = getFunctionProvider(req);
         if (func == null) {
             sendError(response, HttpServletResponse.SC_NOT_FOUND, "Requested Method Not Found");
+            return;
         }
         MessagePart resp = func.process(req);
         String ret = mf.parseToFormat(resp);
