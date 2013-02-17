@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:ws="http://thoughtress.com/WebService" xmi:id="_oCsHcTY0EeKKT_6zDeX4Pg" type="Web_service" name="gitdemo.web_service_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_0S-ScUCqEeKeHsCCBmSDHw" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_0TAHoECqEeKeHsCCBmSDHw" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_0TAHoUCqEeKeHsCCBmSDHw" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_18GMYECqEeKeHsCCBmSDHw" type="3002">
+        <children xmi:type="notation:DecorationNode" xmi:id="_18HagECqEeKeHsCCBmSDHw" type="5004"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_18GMYUCqEeKeHsCCBmSDHw"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_18GMYkCqEeKeHsCCBmSDHw" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_18GMY0CqEeKeHsCCBmSDHw"/>
+        <element xmi:type="ws:XmlMessageFormatter" href="gitdemo.web_service#//@endpoint/@formatters.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_18GMZECqEeKeHsCCBmSDHw"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_DaI0sUiUEeKyOs9YxFAA2g" type="3004">
+        <children xmi:type="notation:DecorationNode" xmi:id="_DaKC0EiUEeKyOs9YxFAA2g" type="5007"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_DaI0skiUEeKyOs9YxFAA2g"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_DaI0s0iUEeKyOs9YxFAA2g" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_DaI0tEiUEeKyOs9YxFAA2g"/>
+        <element xmi:type="ws:GenericMessageFormatter" href="gitdemo.web_service#//@endpoint/@formatters.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DaI0tUiUEeKyOs9YxFAA2g"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_0TAHokCqEeKeHsCCBmSDHw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAusECqEeKeHsCCBmSDHw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_0TAusUCqEeKeHsCCBmSDHw" type="7002">
+      <children xmi:type="notation:Node" xmi:id="_-L4AYES_EeKoxZpncZhNRw" type="3003">
+        <children xmi:type="notation:DecorationNode" xmi:id="_-L4AZUS_EeKoxZpncZhNRw" type="5006"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_-L4AYUS_EeKoxZpncZhNRw"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_-L4AYkS_EeKoxZpncZhNRw" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_-L4AY0S_EeKoxZpncZhNRw"/>
+        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-L4AZES_EeKoxZpncZhNRw"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_3LXnEXh9EeKE0pE7UMPleA" type="3003">
+        <children xmi:type="notation:DecorationNode" xmi:id="_3LZcQHh9EeKE0pE7UMPleA" type="5006"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_3LXnEnh9EeKE0pE7UMPleA"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_3LXnE3h9EeKE0pE7UMPleA" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_3LYOIHh9EeKE0pE7UMPleA"/>
+        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3LYOIXh9EeKE0pE7UMPleA"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_0TAuskCqEeKeHsCCBmSDHw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAus0CqEeKeHsCCBmSDHw"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_0S-SckCqEeKeHsCCBmSDHw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_0S-Sc0CqEeKeHsCCBmSDHw" fontName="Segoe UI"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_0S-SdECqEeKeHsCCBmSDHw"/>
+    <element xmi:type="ws:Endpoint" href="gitdemo.web_service#//@endpoint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0S-SdUCqEeKeHsCCBmSDHw" x="230" y="100" height="241"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_oCsHcjY0EeKKT_6zDeX4Pg"/>
+  <element xmi:type="ws:Service" href="gitdemo.web_service#/"/>
+</notation:Diagram>
