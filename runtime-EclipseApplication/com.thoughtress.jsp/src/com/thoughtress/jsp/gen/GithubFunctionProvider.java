@@ -2,11 +2,14 @@ package com.thoughtress.jsp.gen;
 
 //Start of user code imports
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -30,7 +33,8 @@ public class GithubFunctionProvider extends FunctionProvider {
         if (req.name.equals("GitHubRequest")
                 && req.options.get("nsURI").equals("https://api.github.com")) {
             return true;
-        } else if (req.name.equals("GET") && req.attrs.get("pathInfo").contains("GitHubRequest")) {
+        } else if (req.name.equals("GET") && req.attrs.get("pathInfo") != null
+                && req.attrs.get("pathInfo").contains("GitHubRequest")) {
             return true;
         } else {
             return false;
@@ -40,19 +44,28 @@ public class GithubFunctionProvider extends FunctionProvider {
 
     public MessagePart process(MessagePart req) {
         // Start of user code process
-        String url;
-        if (req.name.equals("GET")){
-            url = req.attrs.get("url");
+        String reqMethod;
+        MessagePart methodParam;
+        if ((methodParam = req.getChild("method")) != null) {
+            reqMethod = methodParam.textValue;
+            req.children.remove(methodParam);
         } else {
-            url = req.children.get(0).textValue;
+            return null;
         }
-        String githubURL = "https://api.github.com";
+        String githubScheme = "https";
+        String githubHost = "api.github.com";
 
         HttpClient httpclient = new DefaultHttpClient();
         try {
-            HttpGet httpget = new HttpGet(String.format("%s%s", githubURL, url));
+            URIBuilder builder = new URIBuilder();
+            builder.setScheme(githubScheme).setHost(githubHost);
+            builder.setPath(reqMethod);
+            for (MessagePart param : req.children) {
+                builder.addParameter(param.name, param.textValue);
+            }
+            URI uri = builder.build();
+            HttpGet httpget = new HttpGet(uri);
             System.out.println("GitHubProcess::" + httpget.getURI());
-            // Create a response handler
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             final String responseBody = httpclient.execute(httpget, responseHandler);
             return new MessagePart("GitHubResponse") {
@@ -67,10 +80,10 @@ public class GithubFunctionProvider extends FunctionProvider {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         } finally {
-            // When HttpClient instance is no longer needed,
-            // shut down the connection manager to ensure
-            // immediate deallocation of all system resources
             httpclient.getConnectionManager().shutdown();
         }
         return req;
