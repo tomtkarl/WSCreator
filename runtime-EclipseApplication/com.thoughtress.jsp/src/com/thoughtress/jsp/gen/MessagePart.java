@@ -102,4 +102,16 @@ public class MessagePart {
     public String getOption(String key) {
         return this.options.get(key);
     }
+    @Override
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("\tName: " + this.name);
+        sb.append("\n\tAttrs: " + this.attrs);
+        sb.append("\n\tOptions: " + this.options);
+        sb.append("\n\tTextValue: " + this.textValue);
+        for (MessagePart child : this.children){
+            sb.append("\n" + child.toString());
+        }
+        return sb.toString();
+    }
 }
