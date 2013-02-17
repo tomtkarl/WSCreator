@@ -25,6 +25,13 @@ public class MessagePart {
         return this.textValue != "";
     }
     
+    /**
+     * Get a named child of the MessagePart
+     * 
+     * @param name The name of the child to search for.
+     * @return A MessagePart matching the given name if it exists.
+     * Otherwise null is returned.
+     */
     public MessagePart getChild(String name){
         for (MessagePart child : this.children){
             if (child.name.equals(name)){
