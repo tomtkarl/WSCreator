@@ -47,8 +47,7 @@ public class GithubFunctionProvider extends FunctionProvider {
             System.out.println("GitHubProcess::" + httpget.getURI());
             // Create a response handler
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String responseBody = httpclient.execute(httpget,
-                    responseHandler);
+            final String responseBody = httpclient.execute(httpget, responseHandler);
             return new MessagePart("GitHubResponse") {
                 {
                     textValue = responseBody;
