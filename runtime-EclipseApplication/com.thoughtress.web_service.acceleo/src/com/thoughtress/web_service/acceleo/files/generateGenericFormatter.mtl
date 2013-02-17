@@ -5,13 +5,14 @@
 [file (aGenericMessageFormatter.name + '.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
 //[protected ('imports')]
+import javax.servlet.http.HttpServletRequest;
 //[/protected]
 /**
 *A Message Formatter for the Web Service<br />
 *Implements one or more Message Formats to support the web service.
 */
 public class [aGenericMessageFormatter.name/] extends MessageFormatter{
-	public static String['[]'/] getTypes(){
+	public static boolean match(HttpServletRequest req){
         //[protected ('getTypes')]
         throw new UnsupportedOperationException("Not yet implemented");
         //[/protected]
