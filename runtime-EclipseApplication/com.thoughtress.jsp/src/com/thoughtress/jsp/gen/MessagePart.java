@@ -24,17 +24,16 @@ public class MessagePart {
     public boolean isText() {
         return this.textValue != "";
     }
-    
+
     /**
      * Get a named child of the MessagePart
      * 
      * @param name The name of the child to search for.
-     * @return A MessagePart matching the given name if it exists.
-     * Otherwise null is returned.
+     * @return A MessagePart matching the given name if it exists. Otherwise null is returned.
      */
-    public MessagePart getChild(String name){
-        for (MessagePart child : this.children){
-            if (child.name.equals(name)){
+    public MessagePart getChild(String name) {
+        for (MessagePart child : this.children) {
+            if (child.name.equals(name)) {
                 return child;
             }
         }
@@ -118,14 +117,15 @@ public class MessagePart {
     public String getOption(String key) {
         return this.options.get(key);
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("\tName: " + this.name);
         sb.append("\n\tAttrs: " + this.attrs);
         sb.append("\n\tOptions: " + this.options);
         sb.append("\n\tTextValue: " + this.textValue);
-        for (MessagePart child : this.children){
+        for (MessagePart child : this.children) {
             sb.append("\n" + child.toString());
         }
         return sb.toString();
