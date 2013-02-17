@@ -1,13 +1,9 @@
 package com.thoughtress.jsp.gen;
 
 //Start of user code imports
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
-
 //End of user code
 /**
  * A Message Formatter for the Web Service<br />
@@ -28,9 +24,10 @@ public class GetFormatter extends MessageFormatter {
         req.attrs.put("contextPath", request.getContextPath());
         req.attrs.put("servletPath", request.getServletPath());
         req.attrs.put("pathInfo", request.getPathInfo());
-        System.out.println(request+"::"+req.attrs);
         for (String key : Collections.list(request.getParameterNames())){
-            req.attrs.put(key, request.getParameter(key));
+            MessagePart param = new MessagePart(key);
+            param.textValue = request.getParameter(key);
+            req.children.add(param);
         }
         return req;
         // End of user code
