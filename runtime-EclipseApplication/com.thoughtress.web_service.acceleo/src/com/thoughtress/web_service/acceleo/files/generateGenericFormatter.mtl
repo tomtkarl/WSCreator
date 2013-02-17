@@ -4,7 +4,8 @@
 [template public generateGenericFormatter(aGenericMessageFormatter : GenericMessageFormatter)]
 [file (aGenericMessageFormatter.name + '.java', false, 'UTF-8')]
 package com.thoughtress.jsp.gen;
-
+//[protected ('imports')]
+//[/protected]
 /**
 *A Message Formatter for the Web Service<br />
 *Implements one or more Message Formats to support the web service.
