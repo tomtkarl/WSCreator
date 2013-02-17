@@ -140,13 +140,17 @@ public class MyFormatter extends MessageFormatter{
 	    class NodeBuilder{
 	    	public SOAPElement buildNode(MessagePart part) throws SOAPException{
 	    		System.out.println("buildNode> " + part.name + ": " + part.isText());
-	    	    Name partName = soapEnvelope.createName(part.name);
-	    	    SOAPElement elem = soapFactory.createElement(partName);
-	    	    if (part.options.containsKey("nsURI") && 
+	    		Name partName;
+	    		if (part.options.containsKey("nsURI") && 
 	    	    	part.options.containsKey("nsPrefix")){
-	    	    	elem.addNamespaceDeclaration(part.options.get("nsPrefix"),
-	    	    								 part.options.get("nsURI"));
+    				partName = soapEnvelope.createName(part.name,
+    												   part.options.get("nsPrefix"),
+    												   part.options.get("nsURI"));
+	    	    } else {
+	    	    	partName = soapEnvelope.createName(part.name);
 	    	    }
+	    	    SOAPElement elem = soapFactory.createElement(partName);
+	    	    
 	    	    for (String key : part.getAttrKeys()){
 	    	    	elem.addAttribute(soapEnvelope.createName(key),
 	    	    					  part.getAttr(key));
