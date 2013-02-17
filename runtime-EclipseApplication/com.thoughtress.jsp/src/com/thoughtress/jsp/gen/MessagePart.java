@@ -24,6 +24,15 @@ public class MessagePart {
     public boolean isText() {
         return this.textValue != "";
     }
+    
+    public MessagePart getChild(String name){
+        for (MessagePart child : this.children){
+            if (child.name.equals(name)){
+                return child;
+            }
+        }
+        return null;
+    }
 
     /**
      * Set a key,value pair in the MessagePart attributes. This will overwrite existing keys if already set.
