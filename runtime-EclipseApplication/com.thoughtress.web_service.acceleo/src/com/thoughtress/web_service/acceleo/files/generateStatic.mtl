@@ -17,12 +17,12 @@ public class MessagePart{
 	public ArrayList<MessagePart> children;
 	public String textValue;
 	public String name;
-	public MessagePart(){
+	public MessagePart(String name){
 		this.attrs = new HashMap<String, String>();
 		this.options = new HashMap<String, String>();
 		this.children = new ArrayList<MessagePart>();
 		this.textValue = "";
-		this.name = "";
+		this.name = name;
 	}
 	public boolean isText(){
 		return this.textValue != "";

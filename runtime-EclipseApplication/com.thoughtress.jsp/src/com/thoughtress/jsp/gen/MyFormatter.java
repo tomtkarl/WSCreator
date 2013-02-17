@@ -79,8 +79,7 @@ public class MyFormatter extends MessageFormatter{
 	}
 	
 	private static MessagePart buildMessagePart(SOAPElement elem){
-		MessagePart part = new MessagePart();
-		part.name = getElementName(elem);
+		MessagePart part = new MessagePart(getElementName(elem));
 		Iterator<String> nsIter = elem.getNamespacePrefixes();
 		while (nsIter.hasNext()){
 			String nsPrefix = nsIter.next();
