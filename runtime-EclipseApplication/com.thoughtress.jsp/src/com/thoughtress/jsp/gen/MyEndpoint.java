@@ -60,9 +60,6 @@ public class MyEndpoint extends HttpServlet{
 		if (Arrays.asList(MyFormatter.getTypes()).contains(request.getContentType())){
 			mf = new MyFormatter();	
 		}
-		else if (Arrays.asList(OtherFormatter.getTypes()).contains(request.getContentType())){
-			mf = new OtherFormatter();	
-		}
 		else if (Arrays.asList(MyGenericFormatter.getTypes()).contains(request.getContentType())){
 			mf = new MyGenericFormatter();	
 		}
@@ -82,8 +79,8 @@ public class MyEndpoint extends HttpServlet{
 		if (MyFunctionProvider.match(req)){
 	    	func = new MyFunctionProvider();
 	    }
-		else if (OtherFunctionProvider.match(req)){
-	    	func = new OtherFunctionProvider();
+		else if (GithubFunctionProvider.match(req)){
+	    	func = new GithubFunctionProvider();
 	    }
 	    else {
 			try {

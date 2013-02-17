@@ -17,7 +17,12 @@ private static String[] methods = {"GetStockPrice"};
 	*/
 	public static Boolean match(MessagePart req) {
 		//Start of user code match
-return true;
+		System.out.println("match::" + req.name);
+		if (req.name.equals("EchoRequest")){
+        	return true;
+        } else {
+        	return false;
+        }
         //End of user code
 	}
 
