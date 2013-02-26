@@ -5,5 +5,6 @@
     <formatters xsi:type="ws:GenericMessageFormatter" name="GetFormatter"/>
     <functions name="MyFunctionProvider"/>
     <functions name="GithubFunctionProvider"/>
+    <functions name="TwitterFunctionProvider"/>
   </endpoint>
 </ws:Service>

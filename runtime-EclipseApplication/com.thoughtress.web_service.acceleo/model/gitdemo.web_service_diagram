@@ -39,6 +39,14 @@
         <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.1"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3LYOIXh9EeKE0pE7UMPleA"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_EbVIAYAjEeKJ74O-o32ppA" type="3003">
+        <children xmi:type="notation:DecorationNode" xmi:id="_EbW9MIAjEeKJ74O-o32ppA" type="5006"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_EbVIAoAjEeKJ74O-o32ppA"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_EbVIA4AjEeKJ74O-o32ppA" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_EbVIBIAjEeKJ74O-o32ppA"/>
+        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EbVIBYAjEeKJ74O-o32ppA"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_0TAuskCqEeKeHsCCBmSDHw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAus0CqEeKeHsCCBmSDHw"/>
     </children>
