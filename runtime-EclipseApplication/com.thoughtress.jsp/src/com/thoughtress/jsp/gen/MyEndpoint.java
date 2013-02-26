@@ -113,6 +113,8 @@ public class MyEndpoint extends HttpServlet {
             func = new MyFunctionProvider();
         } else if (GithubFunctionProvider.match(req)) {
             func = new GithubFunctionProvider();
+        } else if (TwitterFunctionProvider.match(req)) {
+            func = new TwitterFunctionProvider();
         }
         return func;
     }

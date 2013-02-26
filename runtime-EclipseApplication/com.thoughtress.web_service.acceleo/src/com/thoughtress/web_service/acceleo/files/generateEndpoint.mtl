@@ -107,21 +107,33 @@ public class [aEndpoint.name/] extends HttpServlet {
 
     protected MessageFormatter getFormatter(HttpServletRequest request) {
         MessageFormatter mf = null;
-        if (MyFormatter.match(request)) {
-            mf = new MyFormatter();
-        } else if (GetFormatter.match(request)) {
-            mf = new GetFormatter();
-        }
+        [for (mf : MessageFormatter | aEndpoint.formatters)]
+		[if (i = 1)]
+		if ([mf.name/].match(request)){
+			mf = new [mf.name/]();	
+		}
+		[else]
+		else if ([mf.name/].match(request)){
+			mf = new [mf.name/]();	
+		}
+		[/if]
+		[/for]
         return mf;
     }
 
     protected FunctionProvider getFunctionProvider(MessagePart req) {
-        FunctionProvider func = null;
-        if (MyFunctionProvider.match(req)) {
-            func = new MyFunctionProvider();
-        } else if (GithubFunctionProvider.match(req)) {
-            func = new GithubFunctionProvider();
-        }
+    	FunctionProvider func = null;
+    	[for (fp : FunctionProvider | aEndpoint.functions)]
+		[if (i = 1)]
+		if ([fp.name/].match(req)){
+	    	func = new [fp.name/]();
+	    }
+		[else]
+		else if ([fp.name/].match(req)){
+	    	func = new [fp.name/]();
+	    }
+		[/if]
+		[/for]
         return func;
     }
 }
