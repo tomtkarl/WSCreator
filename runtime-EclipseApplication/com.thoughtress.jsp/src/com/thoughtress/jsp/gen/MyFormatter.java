@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,6 @@ import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
@@ -124,7 +124,6 @@ public class MyFormatter extends MessageFormatter {
                 part.children.add(buildMessagePart((SOAPElement) nextElem));
             } else if (type == TEXT_NODE) {
                 part.textValue = ((Text) nextElem).getTextContent();
-                System.out.println("buildMessagePart:: " + part.textValue);
             }
         }
         return part;
@@ -156,7 +155,13 @@ public class MyFormatter extends MessageFormatter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String formatted = new String(out.toByteArray());
+        String formatted = "";
+        try {
+            formatted = new String(out.toByteArray(), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return formatted;
     }
 
@@ -166,12 +171,12 @@ public class MyFormatter extends MessageFormatter {
     private static SOAPMessage buildSOAPMessageRoot(MessagePart root) throws SOAPException {
         final SOAPFactory soapFactory = SOAPFactory.newInstance();
         SOAPMessage soapMessage = MessageFactory.newInstance().createMessage();
+        soapMessage.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "true");
         SOAPPart soapPart = soapMessage.getSOAPPart();
         final SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
         SOAPBody soapBody = soapEnvelope.getBody();
         class NodeBuilder {
             public SOAPElement buildNode(MessagePart part) throws SOAPException {
-                System.out.println("buildNode> " + part.name + ": " + part.isText());
                 Name partName;
                 if (part.options.containsKey("nsURI") && part.options.containsKey("nsPrefix")) {
                     partName = soapEnvelope.createName(part.name, part.options.get("nsPrefix"),
