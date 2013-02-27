@@ -1,17 +1,13 @@
 package com.thoughtress.jsp.gen;
 
 //Start of user code imports
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
+import java.text.DateFormat;
+import java.util.List;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 //End of user code
 /**
@@ -51,42 +47,49 @@ public class TwitterFunctionProvider extends FunctionProvider {
         } else {
             return null;
         }
-        String twitterScheme = "https";
-        String twitterHost = "api.twitter.com";
-        String pathPrefix = "/1.1";
-
-        HttpClient httpclient = new DefaultHttpClient();
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+          .setOAuthConsumerKey("vtr34RpnJwAUW6pLk1F4gA")
+          .setOAuthConsumerSecret("mA6E6L6Jyxwr5URE9IkqYIGTIoXASN2ori9YdiNo")
+          .setOAuthAccessToken("385184847-uGJ3hTUy9TJWvyzhqIoNEE7yJ7tREwUZzBW4jQDR")
+          .setOAuthAccessTokenSecret("OSSTnOwUEoPoro6YW3PvfXt9VeRsyJNBOno2kuvk2yw");
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
+        MessagePart ret = null;
         try {
-            URIBuilder builder = new URIBuilder();
-            builder.setScheme(twitterScheme).setHost(twitterHost);
-            builder.setPath(pathPrefix + reqMethod);
-            for (MessagePart param : req.children) {
-                builder.addParameter(param.name, param.textValue);
+            if (reqMethod.equals("GetHomeTimeline")){
+                List<Status> statuses = twitter.getHomeTimeline();
+                ret = statusesToMessagePart(statuses);
+            } else if (reqMethod.equals("ShowStatus")){
+                String id = req.getChild("id").textValue;
+                Status status = twitter.showStatus(Long.decode(id));
+                ret = statusToMessagePart(status);
             }
-            URI uri = builder.build();
-            HttpGet httpget = new HttpGet(uri);
-            System.out.println("TwitterProcess::" + httpget.getURI());
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            final String responseBody = httpclient.execute(httpget, responseHandler);
-            return new MessagePart("TwitterResponse") {
-                {
-                    textValue = responseBody;
-                }
-            };
-            // System.out.println(responseBody);
-        } catch (ClientProtocolException e) {
+        } catch (TwitterException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            httpclient.getConnectionManager().shutdown();
         }
-        return req;
+        return ret;
         // End of user code
+    }
+    private MessagePart statusesToMessagePart(List<Status> statuses){
+        MessagePart root = new MessagePart("TwitterResponse");
+        for (Status status: statuses){
+            root.children.add(statusToMessagePart(status));
+        }
+        return root;
+    }
+    private MessagePart statusToMessagePart(final Status status){
+        //System.out.println("Tweet:: " + status.getText());
+        final DateFormat df = DateFormat.getInstance();
+        MessagePart tweet = new MessagePart("tweet"){{
+           textValue = status.getText();
+           attrs.put("id", String.valueOf(status.getId()));
+           attrs.put("favourited", Boolean.toString(status.isFavorited()));
+           attrs.put("author", status.getUser().getName());
+           attrs.put("created", df.format(status.getCreatedAt()));
+           attrs.put("isRetweet", Boolean.toString(status.isRetweet()));
+        }};
+        return tweet;
     }
 }
