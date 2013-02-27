@@ -43,6 +43,8 @@ public class GetFormatter extends MessageFormatter {
 
     @Override
     public String buildError(int code, String message) {
+        // Start of user code buildError
         return "An error occured: " + code + " " + message;
+        // End of user code
     }
 }

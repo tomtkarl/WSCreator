@@ -196,7 +196,7 @@ public class MyFormatter extends MessageFormatter {
         soapBody.addChildElement(nlb.buildNode(root));
         return soapMessage;
     }
-    
+
     @Override
     public String buildError(int code, String message) {
         SOAPMessage soapMessage = null;
