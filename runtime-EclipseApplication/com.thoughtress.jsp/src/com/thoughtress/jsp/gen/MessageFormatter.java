@@ -40,4 +40,15 @@ public abstract class MessageFormatter {
     public String parseToFormat(MessagePart answer) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    /**
+     * Build an error message to be returned to the user.
+     * 
+     * @param code The error code (using HTTP standard codes)
+     * @param message A description of the error reason
+     * @return A pretty string explaining the error to the user.
+     */
+    public String buildError(int code, String message) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

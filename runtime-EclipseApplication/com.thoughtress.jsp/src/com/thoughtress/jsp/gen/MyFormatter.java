@@ -21,6 +21,7 @@ import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPFactory;
+import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
@@ -194,5 +195,40 @@ public class MyFormatter extends MessageFormatter {
         NodeBuilder nlb = new NodeBuilder();
         soapBody.addChildElement(nlb.buildNode(root));
         return soapMessage;
+    }
+    
+    @Override
+    public String buildError(int code, String message) {
+        SOAPMessage soapMessage = null;
+        try {
+            soapMessage = MessageFactory.newInstance().createMessage();
+            SOAPPart soapPart = soapMessage.getSOAPPart();
+            SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
+            SOAPBody soapBody = soapEnvelope.getBody();
+            Name faultCode;
+            if (code > 400 && code < 500) {
+                faultCode = soapEnvelope.createName("Client", null,
+                        SOAPConstants.URI_NS_SOAP_ENVELOPE);
+
+            } else {
+                faultCode = soapEnvelope.createName("Client", null,
+                        SOAPConstants.URI_NS_SOAP_ENVELOPE);
+            }
+            String faultString = code + ": " + message;
+            soapBody.addFault(faultCode, faultString);
+        } catch (SOAPException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            soapMessage.writeTo(out);
+        } catch (SOAPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String formatted = new String(out.toByteArray());
+        return formatted;
     }
 }

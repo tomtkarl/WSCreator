@@ -40,4 +40,9 @@ public class GetFormatter extends MessageFormatter {
         return answer.toString();
         // End of user code
     }
+
+    @Override
+    public String buildError(int code, String message) {
+        return "An error occured: " + code + " " + message;
+    }
 }

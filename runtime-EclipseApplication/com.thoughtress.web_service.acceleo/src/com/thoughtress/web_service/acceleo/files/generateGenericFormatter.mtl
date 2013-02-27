@@ -29,6 +29,12 @@ public class [aGenericMessageFormatter.name/] extends MessageFormatter{
 		throw new UnsupportedOperationException("Not yet implemented");
 		//[/protected]
 	}	
+	@Override
+    public String buildError(int code, String message) {
+        //[protected ('buildError')]
+		throw new UnsupportedOperationException("Not yet implemented");
+		//[/protected]
+    }
 }
 [/file]
 [/template]

@@ -40,14 +40,15 @@ public class [aEndpoint.name/] extends HttpServlet {
         }
         MessageFormatter mf = getFormatter(request);
         if (mf == null) {
-            sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
+            sendHTTPError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
             return;
         }
         MessagePart req = mf.parseToRequest(null, request);
 
         FunctionProvider func = getFunctionProvider(req);
         if (func == null) {
-            sendError(response, HttpServletResponse.SC_NOT_FOUND, "Requested Method Not Found");
+            String ret = mf.buildError(404, "Requested Method Not Found");
+            pw.println(ret);
             return;
         }
         MessagePart resp = func.process(req);
@@ -79,14 +80,15 @@ public class [aEndpoint.name/] extends HttpServlet {
         }
         MessageFormatter mf = getFormatter(request);
         if (mf == null) {
-            sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
+            sendHTTPError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
             return;
         }
         MessagePart req = mf.parseToRequest(data.toString(), request);
 
         FunctionProvider func = getFunctionProvider(req);
         if (func == null) {
-            sendError(response, HttpServletResponse.SC_NOT_FOUND, "Requested Method Not Found");
+            String ret = mf.buildError(404, "Requested Method Not Found");
+            pw.println(ret);
             return;
         }
         MessagePart resp = func.process(req);
@@ -94,7 +96,7 @@ public class [aEndpoint.name/] extends HttpServlet {
         pw.println(ret);
     }
 
-    protected void sendError(HttpServletResponse response, int code, String message) {
+    protected void sendHTTPError(HttpServletResponse response, int code, String message) {
         try {
             response.sendError(code, message);
             return;
