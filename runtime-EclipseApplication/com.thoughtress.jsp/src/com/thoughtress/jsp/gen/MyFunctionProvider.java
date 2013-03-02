@@ -19,8 +19,9 @@ public class MyFunctionProvider extends FunctionProvider {
      */
     public static Boolean match(MessagePart req) {
         // Start of user code match
-        System.out.println("match::" + req.name);
         if (req.name.equals("EchoRequest")) {
+            return true;
+        } else if (req.name.equals("EchoRequest") && req.options.get("nsURI") == null) {
             return true;
         } else {
             return false;

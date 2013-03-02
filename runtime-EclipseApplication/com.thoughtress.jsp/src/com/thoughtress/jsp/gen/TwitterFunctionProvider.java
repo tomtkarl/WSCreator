@@ -25,11 +25,10 @@ public class TwitterFunctionProvider extends FunctionProvider {
      */
     public static Boolean match(MessagePart req) {
         // Start of user code match
-        if (req.name.equals("TwitterRequest")
+        if (req.name.equals("TwitterRequest") && req.options.get("nsURI") != null
                 && req.options.get("nsURI").equals("https://api.twitter.com")) {
             return true;
-        } else if (req.name.equals("GET") && req.attrs.get("pathInfo") != null
-                && req.attrs.get("pathInfo").contains("TwitterRequest")) {
+        } else if (req.name.equals("TwitterRequest") && req.options.get("nsURI") == null) {
             return true;
         } else {
             return false;

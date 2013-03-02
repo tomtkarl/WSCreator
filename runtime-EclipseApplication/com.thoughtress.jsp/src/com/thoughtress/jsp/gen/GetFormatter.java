@@ -20,7 +20,8 @@ public class GetFormatter extends MessageFormatter {
     @Override
     public MessagePart parseToRequest(String data, HttpServletRequest request) {
         // Start of user code parseToRequest
-        MessagePart req = new MessagePart("GET");
+        String method = request.getPathInfo().split("/",2)[1];
+        MessagePart req = new MessagePart(method);
         req.attrs.put("host", request.getServerName());
         req.attrs.put("contextPath", request.getContextPath());
         req.attrs.put("servletPath", request.getServletPath());
@@ -44,7 +45,7 @@ public class GetFormatter extends MessageFormatter {
     @Override
     public String buildError(int code, String message) {
         // Start of user code buildError
-        return "An error occured: " + code + " " + message;
+        return "An error occurred: " + code + " " + message;
         // End of user code
     }
 }

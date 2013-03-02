@@ -30,11 +30,10 @@ public class GithubFunctionProvider extends FunctionProvider {
      */
     public static Boolean match(MessagePart req) {
         // Start of user code match
-        if (req.name.equals("GitHubRequest")
+        if (req.name.equals("GitHubRequest") && req.options.get("nsURI") != null
                 && req.options.get("nsURI").equals("https://api.github.com")) {
             return true;
-        } else if (req.name.equals("GET") && req.attrs.get("pathInfo") != null
-                && req.attrs.get("pathInfo").contains("GitHubRequest")) {
+        } else if (req.name.equals("GitHubRequest") && req.options.get("nsURI") == null) {
             return true;
         } else {
             return false;
