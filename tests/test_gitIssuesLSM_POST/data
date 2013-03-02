@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+<soap:Header></soap:Header>
+<soap:Body>
+<m:GitHubRequest xmlns:m="https://api.github.com">
+<method>/repos/tomtkarl/WSCreator/issues</method>
+<labels>enhancement</labels>
+<state>closed</state>
+<milestone>2</milestone>
+</m:GitHubRequest>
+</soap:Body>
+</soap:Envelope>
