@@ -2,9 +2,9 @@
 <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
 <soap:Header />
 <soap:Body>
-<m:EchoRequest xmlns:m="http://thoughtress.com">
-<foo>bar</foo>
-<baz>boo</baz>
+<m:EchoRequest xmlns:m="http://thoughtress.com" steak="pork">
+<foo bacon="ipsum" dolor="sit">bar</foo>
+<baz amet="fatback" doner="strip">boo</baz>
 </m:EchoRequest>
 </soap:Body>
 </soap:Envelope>

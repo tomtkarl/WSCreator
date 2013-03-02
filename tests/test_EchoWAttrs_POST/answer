@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8" ?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><m:EchoRequest xmlns:m="http://thoughtress.com" steak="pork"><foo bacon="ipsum" dolor="sit">bar</foo><baz amet="fatback" doner="strip">boo</baz></m:EchoRequest></SOAP-ENV:Body></SOAP-ENV:Envelope>
