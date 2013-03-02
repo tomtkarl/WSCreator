@@ -20,7 +20,7 @@ public class GetFormatter extends MessageFormatter {
     @Override
     public MessagePart parseToRequest(String data, HttpServletRequest request) {
         // Start of user code parseToRequest
-        String method = request.getPathInfo().split("/",2)[1];
+        String method = request.getPathInfo().split("/", 2)[1];
         MessagePart req = new MessagePart(method);
         req.attrs.put("host", request.getServerName());
         req.attrs.put("contextPath", request.getContextPath());

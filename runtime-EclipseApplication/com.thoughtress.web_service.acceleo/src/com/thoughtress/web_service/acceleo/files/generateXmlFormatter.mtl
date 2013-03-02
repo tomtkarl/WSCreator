@@ -126,7 +126,6 @@ public class [aXmlMessageFormatter.name/] extends MessageFormatter {
                 part.children.add(buildMessagePart((SOAPElement) nextElem));
             } else if (type == TEXT_NODE) {
                 part.textValue = ((Text) nextElem).getTextContent();
-                System.out.println("buildMessagePart:: " + part.textValue);
             }
         }
         return part;
@@ -179,7 +178,6 @@ public class [aXmlMessageFormatter.name/] extends MessageFormatter {
         SOAPBody soapBody = soapEnvelope.getBody();
         class NodeBuilder {
             public SOAPElement buildNode(MessagePart part) throws SOAPException {
-                System.out.println("buildNode> " + part.name + ": " + part.isText());
                 Name partName;
                 if (part.options.containsKey("nsURI") && part.options.containsKey("nsPrefix")) {
                     partName = soapEnvelope.createName(part.name, part.options.get("nsPrefix"),

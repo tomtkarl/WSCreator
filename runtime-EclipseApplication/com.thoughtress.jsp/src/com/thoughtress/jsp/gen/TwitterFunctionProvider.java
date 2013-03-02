@@ -47,19 +47,18 @@ public class TwitterFunctionProvider extends FunctionProvider {
             return null;
         }
         ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-          .setOAuthConsumerKey("vtr34RpnJwAUW6pLk1F4gA")
-          .setOAuthConsumerSecret("mA6E6L6Jyxwr5URE9IkqYIGTIoXASN2ori9YdiNo")
-          .setOAuthAccessToken("385184847-uGJ3hTUy9TJWvyzhqIoNEE7yJ7tREwUZzBW4jQDR")
-          .setOAuthAccessTokenSecret("OSSTnOwUEoPoro6YW3PvfXt9VeRsyJNBOno2kuvk2yw");
+        cb.setDebugEnabled(true).setOAuthConsumerKey("vtr34RpnJwAUW6pLk1F4gA")
+                .setOAuthConsumerSecret("mA6E6L6Jyxwr5URE9IkqYIGTIoXASN2ori9YdiNo")
+                .setOAuthAccessToken("385184847-uGJ3hTUy9TJWvyzhqIoNEE7yJ7tREwUZzBW4jQDR")
+                .setOAuthAccessTokenSecret("OSSTnOwUEoPoro6YW3PvfXt9VeRsyJNBOno2kuvk2yw");
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         MessagePart ret = null;
         try {
-            if (reqMethod.equals("GetHomeTimeline")){
+            if (reqMethod.equals("GetHomeTimeline")) {
                 List<Status> statuses = twitter.getHomeTimeline();
                 ret = statusesToMessagePart(statuses);
-            } else if (reqMethod.equals("ShowStatus")){
+            } else if (reqMethod.equals("ShowStatus")) {
                 String id = req.getChild("id").textValue;
                 Status status = twitter.showStatus(Long.decode(id));
                 ret = statusToMessagePart(status);
@@ -71,24 +70,40 @@ public class TwitterFunctionProvider extends FunctionProvider {
         return ret;
         // End of user code
     }
-    private MessagePart statusesToMessagePart(List<Status> statuses){
+
+    /**
+     * Build a MessagePart from the given Status list
+     * @param statuses A List of Status objects
+     * @return A MessagePart from the given Status list
+     * @generated-not
+     */
+    private MessagePart statusesToMessagePart(List<Status> statuses) {
         MessagePart root = new MessagePart("TwitterResponse");
-        for (Status status: statuses){
+        for (Status status : statuses) {
             root.children.add(statusToMessagePart(status));
         }
         return root;
     }
-    private MessagePart statusToMessagePart(final Status status){
-        //System.out.println("Tweet:: " + status.getText());
+
+    /**
+     * Build a MessagePart from the given Status
+     * @param status A Status object
+     * @return A MessagePart from the given Status
+     * @generated-not
+     */
+    private MessagePart statusToMessagePart(final Status status) {
+        // System.out.println("Tweet:: " + status.getText());
         final DateFormat df = DateFormat.getInstance();
-        MessagePart tweet = new MessagePart("tweet"){{
-           textValue = status.getText();
-           attrs.put("id", String.valueOf(status.getId()));
-           attrs.put("favourited", Boolean.toString(status.isFavorited()));
-           attrs.put("author", status.getUser().getName());
-           attrs.put("created", df.format(status.getCreatedAt()));
-           attrs.put("isRetweet", Boolean.toString(status.isRetweet()));
-        }};
+        MessagePart tweet = new MessagePart("tweet") {
+            {
+                textValue = status.getText();
+                attrs.put("id", String.valueOf(status.getId()));
+                attrs.put("favourited", Boolean.toString(status.isFavorited()));
+                attrs.put("author", status.getUser().getName());
+                attrs.put("created", df.format(status.getCreatedAt()));
+                attrs.put("isRetweet", Boolean.toString(status.isRetweet()));
+            }
+        };
         return tweet;
     }
 }
