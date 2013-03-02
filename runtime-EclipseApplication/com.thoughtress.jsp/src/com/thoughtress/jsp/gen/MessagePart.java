@@ -121,12 +121,12 @@ public class MessagePart {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        sb.append("\tName: " + this.name);
-        sb.append("\n\tAttrs: " + this.attrs);
-        sb.append("\n\tOptions: " + this.options);
-        sb.append("\n\tTextValue: " + this.textValue);
+        sb.append("Name: " + this.name);
+        sb.append("\n>>Attrs: " + this.attrs);
+        sb.append("\n>>Options: " + this.options);
+        sb.append("\n>>TextValue: " + this.textValue);
         for (MessagePart child : this.children) {
-            sb.append("\n" + child.toString());
+            sb.append("\n\n" + child.toString());
         }
         return sb.toString();
     }
