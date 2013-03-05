@@ -161,7 +161,8 @@ public abstract class MessageFormatter {
 	*@param data  The data string to be parsed
 	*@return      A MessagePart object derived from the given data.
 	*/
-	public MessagePart parseToRequest(String data, HttpServletRequest request){
+	public MessagePart parseToRequest(String data, HttpServletRequest request)
+            throws UserServiceException {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
@@ -170,7 +171,7 @@ public abstract class MessageFormatter {
 	*@param  answer  The MessagePart object to be parsed to string
 	*@return         A MessagePart object derived from the given data.
 	*/
-	public String parseToFormat(MessagePart answer){
+	public String parseToFormat(MessagePart answer) throws UserServiceException {
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 	/**
@@ -180,7 +181,7 @@ public abstract class MessageFormatter {
      * @param message A description of the error reason
      * @return A pretty string explaining the error to the user.
      */
-    public String buildError(int code, String message) {
+    public String buildError(UserServiceException e) throws Exception {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
@@ -189,22 +190,36 @@ public abstract class MessageFormatter {
 package com.thoughtress.jsp.gen;
 
 /**
-*The FunctionProvider abstract class<br />
-*FunctionProvider is subclassed by all Function Provider implementations.
-*/
+ * The FunctionProvider abstract class<br />
+ * FunctionProvider is subclassed by all Function Provider implementations.
+ */
 public abstract class FunctionProvider {
-	public static Boolean match(MessagePart req){
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
-	/**
-	*Process the given MessagePart using the defined method.
-	*
-	*@param  req  The MessagePart object to processed.
-	*@return      A MessagePart object constructed using the results of processing the request.
-	*/
-	public MessagePart process(MessagePart req){
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
+    public static Boolean match(MessagePart req) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    /**
+     * Process the given MessagePart using the defined method.
+     * 
+     * @param req The MessagePart object to processed.
+     * @return A MessagePart object constructed using the results of processing the request.
+     * @throws UserServiceException 
+     */
+    public MessagePart process(MessagePart req) throws UserServiceException {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+}
+[/file]
+[file ('UserServiceException.java', false, 'UTF-8')]
+package com.thoughtress.jsp.gen;
+
+public class UserServiceException extends Exception{
+    private static final long serialVersionUID = 1L;
+    public final int code;
+    public UserServiceException(int code, String message){
+        super(message);
+        this.code = code;
+    }
 }
 [/file]
 [/template]

@@ -41,7 +41,7 @@ public class GithubFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) {
+    public MessagePart process(MessagePart req) throws UserServiceException{
         // Start of user code process
         String reqMethod;
         MessagePart methodParam;
@@ -49,7 +49,7 @@ public class GithubFunctionProvider extends FunctionProvider {
             reqMethod = methodParam.textValue;
             req.children.remove(methodParam);
         } else {
-            return null;
+            throw new UserServiceException(400, "No Method Element");
         }
         String githubScheme = "https";
         String githubHost = "api.github.com";
@@ -74,18 +74,17 @@ public class GithubFunctionProvider extends FunctionProvider {
             };
             // System.out.println(responseBody);
         } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Processing Request");
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Processing Request");
         } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Processing Request");
         } finally {
             httpclient.getConnectionManager().shutdown();
         }
-        return req;
         // End of user code
     }
 }

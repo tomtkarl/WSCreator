@@ -36,7 +36,7 @@ public class TwitterFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) {
+    public MessagePart process(MessagePart req) throws UserServiceException{
         // Start of user code process
         String reqMethod;
         MessagePart methodParam;
@@ -44,7 +44,7 @@ public class TwitterFunctionProvider extends FunctionProvider {
             reqMethod = methodParam.textValue;
             req.children.remove(methodParam);
         } else {
-            return null;
+            throw new UserServiceException(400, "No Method Element");
         }
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey("vtr34RpnJwAUW6pLk1F4gA")
@@ -53,21 +53,20 @@ public class TwitterFunctionProvider extends FunctionProvider {
                 .setOAuthAccessTokenSecret("OSSTnOwUEoPoro6YW3PvfXt9VeRsyJNBOno2kuvk2yw");
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
-        MessagePart ret = null;
         try {
             if (reqMethod.equals("GetHomeTimeline")) {
                 List<Status> statuses = twitter.getHomeTimeline();
-                ret = statusesToMessagePart(statuses);
+                return statusesToMessagePart(statuses);
             } else if (reqMethod.equals("ShowStatus")) {
                 String id = req.getChild("id").textValue;
                 Status status = twitter.showStatus(Long.decode(id));
-                ret = statusToMessagePart(status);
+                return statusToMessagePart(status);
+            } else {
+                throw new UserServiceException(400, "Unrecognised TwitterRequest");
             }
         } catch (TwitterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Processing Request");
         }
-        return ret;
         // End of user code
     }
 

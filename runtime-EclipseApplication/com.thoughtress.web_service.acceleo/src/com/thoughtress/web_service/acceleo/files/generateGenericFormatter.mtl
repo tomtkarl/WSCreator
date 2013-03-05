@@ -18,19 +18,20 @@ public class [aGenericMessageFormatter.name/] extends MessageFormatter{
         //[/protected]
 	}
 	@Override
-	public MessagePart parseToRequest(String data, HttpServletRequest request) {
+	public MessagePart parseToRequest(String data, HttpServletRequest request)
+            throws UserServiceException {
 		//[protected ('parseToRequest')]
 		throw new UnsupportedOperationException("Not yet implemented");
 		//[/protected]
 	}
 	@Override
-	public String parseToFormat(MessagePart answer) {
+	public String parseToFormat(MessagePart answer) throws UserServiceException {
 		//[protected ('parseToFormat')]
 		throw new UnsupportedOperationException("Not yet implemented");
 		//[/protected]
 	}	
 	@Override
-    public String buildError(int code, String message) {
+    public String buildError(UserServiceException e) throws Exception {
         //[protected ('buildError')]
 		throw new UnsupportedOperationException("Not yet implemented");
 		//[/protected]

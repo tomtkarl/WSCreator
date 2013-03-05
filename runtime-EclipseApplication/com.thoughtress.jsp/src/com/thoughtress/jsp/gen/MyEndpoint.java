@@ -24,28 +24,7 @@ public class MyEndpoint extends HttpServlet {
      * @param response HttpServletResponse to be used in the construction of a response
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        PrintWriter pw = null;
-        try {
-            pw = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        MessageFormatter mf = getFormatter(request);
-        if (mf == null) {
-            sendHTTPError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
-            return;
-        }
-        MessagePart req = mf.parseToRequest(null, request);
-
-        FunctionProvider func = getFunctionProvider(req);
-        if (func == null) {
-            String ret = mf.buildError(404, "Requested Method Not Found");
-            pw.println(ret);
-            return;
-        }
-        MessagePart resp = func.process(req);
-        String ret = mf.parseToFormat(resp);
-        pw.println(ret);
+        handleRequest(null, request, response);
     }
 
     /**
@@ -61,62 +40,92 @@ public class MyEndpoint extends HttpServlet {
             BufferedReader reader = request.getReader();
             while ((line = reader.readLine()) != null)
                 data.append(line);
-        } catch (Exception e) { /* report an error */
+        } catch (Exception e) {
+            sendHTTPError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Server Error Whilst Reading Request");
         }
-
-        PrintWriter pw = null;
-        try {
-            pw = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        MessageFormatter mf = getFormatter(request);
-        if (mf == null) {
-            sendHTTPError(response, HttpServletResponse.SC_BAD_REQUEST, "Unsupported Content Type");
-            return;
-        }
-        MessagePart req = mf.parseToRequest(data.toString(), request);
-
-        FunctionProvider func = getFunctionProvider(req);
-        if (func == null) {
-            String ret = mf.buildError(404, "Requested Method Not Found");
-            pw.println(ret);
-            return;
-        }
-        MessagePart resp = func.process(req);
-        String ret = mf.parseToFormat(resp);
-        pw.println(ret);
+        handleRequest(data.toString(), request, response);
     }
 
-    protected void sendHTTPError(HttpServletResponse response, int code, String message) {
+    /**
+     * Handle POST and GET requests
+     * 
+     * @param data A String containing any POST data. Use null for GET requests.
+     * @param request HttpServletRequest object representing all request attributes
+     * @param response HttpServletResponse to be used in the construction of a response
+     */
+    private void handleRequest(String data, HttpServletRequest request, HttpServletResponse response) {
+        String ret;
+        MessageFormatter mf = null;
+        ;
+        try {
+            mf = getFormatter(request);
+            MessagePart req = mf.parseToRequest(data, request);
+            FunctionProvider func = getFunctionProvider(req);
+            MessagePart resp = func.process(req);
+            ret = mf.parseToFormat(resp);
+        } catch (UserServiceException e) {
+            try {
+                e.printStackTrace();
+                if (mf != null) {
+                    ret = mf.buildError(e);
+                } else {
+                    ret = getDefaultFormatter().buildError(e);
+                }
+            } catch (Exception ohdear) {
+                ohdear.printStackTrace();
+                sendHTTPError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                        ohdear.getMessage());
+                return;
+            }
+        }
+        PrintWriter pw = null;
+        response.setCharacterEncoding("utf-8");
+        try {
+            pw = response.getWriter();
+            pw.println(ret);
+        } catch (IOException e) {
+            e.printStackTrace();
+            sendHTTPError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Server Error Whilst Sending Response");
+        }
+    }
+
+    public void sendHTTPError(HttpServletResponse response, int code, String message) {
         try {
             response.sendError(code, message);
             return;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+    }
+    
+    private MessageFormatter getDefaultFormatter(){
+        return new MyFormatter();
     }
 
-    protected MessageFormatter getFormatter(HttpServletRequest request) {
-        MessageFormatter mf = null;
+    private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException{
+        MessageFormatter mf;
         if (MyFormatter.match(request)) {
             mf = new MyFormatter();
         } else if (GetFormatter.match(request)) {
             mf = new GetFormatter();
+        } else {
+            throw new UserServiceException(400, "Unsupported Content Type");
         }
         return mf;
     }
 
-    protected FunctionProvider getFunctionProvider(MessagePart req) {
-        FunctionProvider func = null;
+    private FunctionProvider getFunctionProvider(MessagePart req) throws UserServiceException{
+        FunctionProvider func;
         if (MyFunctionProvider.match(req)) {
             func = new MyFunctionProvider();
         } else if (GithubFunctionProvider.match(req)) {
             func = new GithubFunctionProvider();
         } else if (TwitterFunctionProvider.match(req)) {
             func = new TwitterFunctionProvider();
+        } else {
+            throw new UserServiceException(404, "Requested Method Not Found");
         }
         return func;
     }

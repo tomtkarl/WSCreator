@@ -53,7 +53,7 @@ public class MyFormatter extends MessageFormatter {
      * @generated
      */
     @Override
-    public MessagePart parseToRequest(String data, HttpServletRequest request) {
+    public MessagePart parseToRequest(String data, HttpServletRequest request) throws UserServiceException{
         MimeHeaders headers = new MimeHeaders();
         headers.addHeader("Content-Type", "application/soap+xml");
         InputStream xmlStream = new ByteArrayInputStream(data.getBytes());
@@ -64,11 +64,10 @@ public class MyFormatter extends MessageFormatter {
                     .createMessage(headers, xmlStream);
         } catch (SOAPException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Parsing Request");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        if (message == null) {
-            return null;
+            throw new UserServiceException(500, "Error Whilst Parsing Request");
         }
         // get Body of SOAP message
         SOAPBody body = null;
@@ -76,25 +75,23 @@ public class MyFormatter extends MessageFormatter {
             body = message.getSOAPBody();
         } catch (SOAPException e) {
             e.printStackTrace();
-        }
-        if (body == null) {
-            return null;
+            throw new UserServiceException(500, "Error Whilst Parsing Request");
         }
         MessagePart msg = buildMessageRoot(body);
         return msg;
     }
 
     /**
+     * @throws UserServiceException 
      * @generated
      */
-    private static MessagePart buildMessageRoot(SOAPBody body) {
+    private static MessagePart buildMessageRoot(SOAPBody body) throws UserServiceException {
         Iterator<Node> elemIter = body.getChildElements();
         if (elemIter.hasNext()) {
             Node next = elemIter.next();
             return buildMessagePart((SOAPElement) next);
         } else {
-            // TODO: Send error - no root!
-            return null;
+            throw new UserServiceException(500, "Error Whilst Parsing Request");
         }
     }
 
@@ -137,32 +134,34 @@ public class MyFormatter extends MessageFormatter {
     }
 
     /**
+     * @throws UserServiceException 
      * @generated
      */
     @Override
-    public String parseToFormat(MessagePart resp) {
+    public String parseToFormat(MessagePart resp) throws UserServiceException {
         SOAPMessage soapMessage = null;
         try {
             soapMessage = buildSOAPMessageRoot(resp);
         } catch (SOAPException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Response");
         }
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             soapMessage.writeTo(out);
         } catch (SOAPException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Response");
         } catch (IOException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Response");
         }
-        String formatted = "";
         try {
-            formatted = new String(out.toByteArray(), "utf-8");
+            return  new String(out.toByteArray(), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Response");
         }
-        return formatted;
     }
 
     /**
@@ -203,7 +202,7 @@ public class MyFormatter extends MessageFormatter {
     }
 
     @Override
-    public String buildError(int code, String message) {
+    public String buildError(UserServiceException ue) throws Exception{
         SOAPMessage soapMessage = null;
         try {
             soapMessage = MessageFactory.newInstance().createMessage();
@@ -211,27 +210,29 @@ public class MyFormatter extends MessageFormatter {
             SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
             SOAPBody soapBody = soapEnvelope.getBody();
             Name faultCode;
-            if (code > 400 && code < 500) {
+            if (ue.code >= 400 && ue.code < 500) {
                 faultCode = soapEnvelope.createName("Client", null,
                         SOAPConstants.URI_NS_SOAP_ENVELOPE);
 
             } else {
-                faultCode = soapEnvelope.createName("Client", null,
+                faultCode = soapEnvelope.createName("Server", null,
                         SOAPConstants.URI_NS_SOAP_ENVELOPE);
             }
-            String faultString = code + ": " + message;
+            String faultString = ue.getMessage();
             soapBody.addFault(faultCode, faultString);
         } catch (SOAPException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Error");
         }
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             soapMessage.writeTo(out);
         } catch (SOAPException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Error");
         } catch (IOException e) {
             e.printStackTrace();
+            throw new UserServiceException(500, "Error Whilst Building Error");
         }
         String formatted = new String(out.toByteArray());
         return formatted;

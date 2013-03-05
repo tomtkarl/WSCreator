@@ -18,7 +18,8 @@ public class GetFormatter extends MessageFormatter {
     }
 
     @Override
-    public MessagePart parseToRequest(String data, HttpServletRequest request) {
+    public MessagePart parseToRequest(String data, HttpServletRequest request)
+            throws UserServiceException {
         // Start of user code parseToRequest
         String method = request.getPathInfo().split("/", 2)[1];
         MessagePart req = new MessagePart(method);
@@ -36,16 +37,16 @@ public class GetFormatter extends MessageFormatter {
     }
 
     @Override
-    public String parseToFormat(MessagePart answer) {
+    public String parseToFormat(MessagePart answer) throws UserServiceException {
         // Start of user code parseToFormat
         return answer.toString();
         // End of user code
     }
 
     @Override
-    public String buildError(int code, String message) {
+    public String buildError(UserServiceException e) throws Exception{
         // Start of user code buildError
-        return "An error occurred: " + code + " " + message;
+        return "" + e.code + " " + e.getMessage();
         // End of user code
     }
 }
