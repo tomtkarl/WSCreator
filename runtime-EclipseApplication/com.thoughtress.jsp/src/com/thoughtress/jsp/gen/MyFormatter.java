@@ -56,7 +56,7 @@ public class MyFormatter extends MessageFormatter {
     public MessagePart parseToRequest(String data, HttpServletRequest request)
             throws UserServiceException {
         MimeHeaders headers = new MimeHeaders();
-        headers.addHeader("Content-Type", "application/soap+xml");
+        headers.addHeader("Content-Type", request.getContentType());
         InputStream xmlStream = new ByteArrayInputStream(data.getBytes());
         // Construct SOAPMessage from xml
         SOAPMessage message = null;
