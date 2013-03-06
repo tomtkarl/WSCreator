@@ -35,35 +35,20 @@
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
-        name="XmlMessageFormatterFigure">
+        name="GenericFunctionProviderFigure">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="XmlMessageFormatterFigure">
-        <backgroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="orange"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="XmlMessageFormatterNameFigure"/>
-      </actualFigure>
-      <accessors
-          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
-    </descriptors>
-    <descriptors
-        name="FunctionProviderFigure">
-      <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="FunctionProviderFigure">
+          name="GenericFunctionProviderFigure">
         <backgroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="yellow"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="FunctionProviderNameFigure"/>
+            name="GenericFunctionProviderNameFigure"/>
       </actualFigure>
       <accessors
-          accessor="getFigureFunctionProviderNameFigure"
-          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+          accessor="getFigureGenericFunctionProviderNameFigure"
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="GenericMessageFormatterFigure">
@@ -79,20 +64,17 @@
       </actualFigure>
       <accessors
           accessor="getFigureGenericMessageFormatterNameFigure"
-          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
       name="Endpoint"
       figure="EndpointFigure"/>
   <nodes
-      name="XmlMessageFormatter"
-      figure="XmlMessageFormatterFigure"/>
-  <nodes
       name="FunctionProvider"
-      figure="FunctionProviderFigure"/>
+      figure="GenericFunctionProviderFigure"/>
   <nodes
-      name="GenericMessageFormatter"
+      name="MessageFormatter"
       figure="GenericMessageFormatterFigure"/>
   <compartments
       name="FormattersCompartment"
@@ -109,15 +91,11 @@
       figure="EndpointFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels
-      name="FunctionProviderName"
-      figure="FunctionProviderFigure"
-      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels
-      name="XmlMessageFormatterName"
-      figure="XmlMessageFormatterFigure"
+      name="GenericFunctionProviderName"
+      figure="GenericFunctionProviderFigure"
       accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels
       name="GenericMessageFormatterName"
       figure="GenericMessageFormatterFigure"
-      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
 </gmfgraph:Canvas>

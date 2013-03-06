@@ -16,24 +16,17 @@
         queryText="true"/>
   </nodeTraces>
   <childNodeTraces
-      visualID="3002"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'XmlMessageFormatter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'Endpoint') and _containmentMF_.name = 'formatters')">
-    <nodeLabelTraces
-        visualID="5004"
-        queryText="true"/>
-  </childNodeTraces>
-  <childNodeTraces
-      visualID="3003"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'FunctionProvider') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'Endpoint') and _containmentMF_.name = 'functions')">
-    <nodeLabelTraces
-        visualID="5006"
-        queryText="true"/>
-  </childNodeTraces>
-  <childNodeTraces
       visualID="3004"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'GenericMessageFormatter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'Endpoint') and _containmentMF_.name = 'formatters')">
     <nodeLabelTraces
         visualID="5007"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3005"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'GenericFunctionProvider') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://thoughtress.com/WebService' and _eClass_.name = 'Endpoint') and _containmentMF_.name = 'functions')">
+    <nodeLabelTraces
+        visualID="5008"
         queryText="true"/>
   </childNodeTraces>
 </trace:TraceModel>

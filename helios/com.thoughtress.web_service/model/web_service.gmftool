@@ -11,7 +11,7 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Endpoint"
-          description="Create new Endpoint">
+          description="Create Endpoint">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon
@@ -28,17 +28,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="SOAP XML Formatter"
-          description="Create new XmlMessageFormatter">
-        <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
-        <largeIcon
-            xsi:type="gmftool:DefaultImage"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Generic Message Formatter"
-          description="Create new GenericMessageFormatter">
+          title="Message Formatter"
+          description="Create new Message Formatter">
         <smallIcon
             xsi:type="gmftool:DefaultImage"/>
         <largeIcon

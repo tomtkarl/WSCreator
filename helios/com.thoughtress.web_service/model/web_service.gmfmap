@@ -23,38 +23,17 @@
       <diagramNode
           href="web_service.gmfgraph#Endpoint"/>
       <children
-          compartment="//@nodes.0/@ownedChild/@compartments.0">
-        <containmentFeature
-            href="web_service.ecore#//Endpoint/formatters"/>
-        <ownedChild>
-          <domainMetaElement
-              href="web_service.ecore#//XmlMessageFormatter"/>
-          <labelMappings
-              xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="">
-            <diagramLabel
-                href="web_service.gmfgraph#XmlMessageFormatterName"/>
-            <features
-                href="web_service.ecore#//MessageFormatter/name"/>
-          </labelMappings>
-          <tool
-              xsi:type="gmftool:CreationTool"
-              href="web_service.gmftool#//@palette/@tools.0/@tools.2"/>
-          <diagramNode
-              href="web_service.gmfgraph#XmlMessageFormatter"/>
-        </ownedChild>
-      </children>
-      <children
-          compartment="//@nodes.0/@ownedChild/@compartments.1">
+          compartment="//@nodes.0/@ownedChild/@compartments.1"
+          referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
         <containmentFeature
             href="web_service.ecore#//Endpoint/functions"/>
         <ownedChild>
           <domainMetaElement
-              href="web_service.ecore#//FunctionProvider"/>
+              href="web_service.ecore#//GenericFunctionProvider"/>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="web_service.gmfgraph#FunctionProviderName"/>
+                href="web_service.gmfgraph#GenericFunctionProviderName"/>
             <features
                 href="web_service.ecore#//FunctionProvider/name"/>
           </labelMappings>
@@ -66,7 +45,8 @@
         </ownedChild>
       </children>
       <children
-          compartment="//@nodes.0/@ownedChild/@compartments.0">
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
         <containmentFeature
             href="web_service.ecore#//Endpoint/formatters"/>
         <ownedChild>
@@ -82,18 +62,18 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="web_service.gmftool#//@palette/@tools.0/@tools.3"/>
+              href="web_service.gmftool#//@palette/@tools.0/@tools.2"/>
           <diagramNode
-              href="web_service.gmfgraph#GenericMessageFormatter"/>
+              href="web_service.gmfgraph#MessageFormatter"/>
         </ownedChild>
       </children>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.2">
+          children="//@nodes.0/@ownedChild/@children.1">
         <compartment
             href="web_service.gmfgraph#FormattersCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.1">
+          children="//@nodes.0/@ownedChild/@children.0">
         <compartment
             href="web_service.gmfgraph#FunctionsCompartment"/>
       </compartments>

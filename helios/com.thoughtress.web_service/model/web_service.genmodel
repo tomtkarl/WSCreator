@@ -14,13 +14,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/formatters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/functions"/>
     </genClasses>
-    <genClasses ecoreClass="web_service.ecore#//XmlMessageFormatter"/>
-    <genClasses ecoreClass="web_service.ecore#//MessageFormatter">
+    <genClasses image="false" ecoreClass="web_service.ecore#//MessageFormatter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//MessageFormatter/name"/>
     </genClasses>
-    <genClasses ecoreClass="web_service.ecore#//FunctionProvider">
+    <genClasses image="false" ecoreClass="web_service.ecore#//FunctionProvider">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//FunctionProvider/name"/>
     </genClasses>
     <genClasses ecoreClass="web_service.ecore#//GenericMessageFormatter"/>
+    <genClasses ecoreClass="web_service.ecore#//GenericFunctionProvider"/>
   </genPackages>
 </genmodel:GenModel>
