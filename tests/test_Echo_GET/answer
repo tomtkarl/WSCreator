@@ -1,14 +1,14 @@
 Name: EchoRequest
 >>Attrs: {host=localhost, contextPath=/com.thoughtress.jsp, pathInfo=/EchoRequest, servletPath=/MyEndpoint}
 >>Options: {}
->>TextValue: 
+>>Value: null
 
 Name: baz
 >>Attrs: {}
 >>Options: {}
->>TextValue: boo
+>>Value: boo
 
 Name: foo
 >>Attrs: {}
 >>Options: {}
->>TextValue: bar
+>>Value: bar
