@@ -25,24 +25,24 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'GenerateFunctionProvider' generation module.
+ * Entry point of the 'GenerateGenericFP' generation module.
  *
  * @generated
  */
-public class GenerateFunctionProvider extends AbstractAcceleoGenerator {
+public class GenerateGenericFP extends AbstractAcceleoGenerator {
 	/**
 	 * The name of the module.
 	 *
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generateFunctionProvider";
+	public static final String MODULE_FILE_NAME = "generateGenericFP";
 	
 	/**
 	 * The name of the templates that are to be generated.
 	 *
 	 * @generated
 	 */
-	public static final String[] TEMPLATE_NAMES = { "generateFunctionProvider", };
+	public static final String[] TEMPLATE_NAMES = { "generateGenericFP", };
 
 	/**
 	 * Allows the public constructor to be used. Note that a generator created
@@ -58,7 +58,7 @@ public class GenerateFunctionProvider extends AbstractAcceleoGenerator {
 	 *
 	 * @generated
 	 */
-	public GenerateFunctionProvider() {
+	public GenerateGenericFP() {
 		// Empty implementation
 	}
 
@@ -78,7 +78,7 @@ public class GenerateFunctionProvider extends AbstractAcceleoGenerator {
 	 *             the model cannot be loaded.
 	 * @generated
 	 */
-	public GenerateFunctionProvider(URI modelURI, File targetFolder,
+	public GenerateGenericFP(URI modelURI, File targetFolder,
 			List<? extends Object> arguments) throws IOException {
 		initialize(modelURI, targetFolder, arguments);
 	}
@@ -99,7 +99,7 @@ public class GenerateFunctionProvider extends AbstractAcceleoGenerator {
 	 *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
 	 * @generated
 	 */
-	public GenerateFunctionProvider(EObject model, File targetFolder,
+	public GenerateGenericFP(EObject model, File targetFolder,
 			List<? extends Object> arguments) throws IOException {
 		initialize(model, targetFolder, arguments);
 	}
@@ -122,7 +122,7 @@ public class GenerateFunctionProvider extends AbstractAcceleoGenerator {
 				for (int i = 2; i < args.length; i++) {
 					arguments.add(args[i]);
 				}
-				GenerateFunctionProvider generator = new GenerateFunctionProvider(modelURI, folder, arguments);
+				GenerateGenericFP generator = new GenerateGenericFP(modelURI, folder, arguments);
 				generator.doGenerate(new BasicMonitor());
 			}
 		} catch (IOException e) {

@@ -1,8 +1,7 @@
 [comment encoding = UTF-8 /]
 [module generateEndpoint('http://thoughtress.com/WebService')/]
-[import com::thoughtress::web_service::acceleo::files::generateXmlFormatter/]
-[import com::thoughtress::web_service::acceleo::files::generateGenericFormatter/]
-[import com::thoughtress::web_service::acceleo::files::generateFunctionProvider/]
+[import com::thoughtress::web_service::acceleo::files::generateGenericMF/]
+[import com::thoughtress::web_service::acceleo::files::generateGenericFP/]
 
 [template public generateEndpoint(aEndpoint : Endpoint)]
 [file (aEndpoint.name+'.java', false, 'UTF-8')]
@@ -114,16 +113,16 @@ public class [aEndpoint.name/] extends HttpServlet {
 
     private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
         MessageFormatter mf;
-        [for (mf : MessageFormatter | aEndpoint.formatters)]
-		[if (i = 1)]
-		if ([mf.name/].match(request)){
-			mf = new [mf.name/]();	
+        if (SOAPFormatter.match(request)){
+			mf = new SOAPFormatter();	
+		} else if (GetFormatter.match(request)){
+			mf = new GetFormatter();	
 		}
-		[else]
+        [for (mf : MessageFormatter | aEndpoint.formatters)]
 		else if ([mf.name/].match(request)){
 			mf = new [mf.name/]();	
 		}
-		[/if][/for]
+		[/for]
 		else {
             throw new UserServiceException(400, "Unsupported Content Type");
         }
@@ -150,14 +149,11 @@ public class [aEndpoint.name/] extends HttpServlet {
 }
 
 [/file]
-[for (aFormatter : XmlMessageFormatter | aEndpoint.formatters)]
-		[aFormatter.generateXmlFormatter() /]
-[/for]
 [for (aFormatter : GenericMessageFormatter | aEndpoint.formatters)]
-		[aFormatter.generateGenericFormatter() /]
+		[aFormatter.generateGenericMF() /]
 [/for]
 [for (aFunctionProvider : FunctionProvider | aEndpoint.functions)]
-		[aFunctionProvider.generateFunctionProvider() /]
+		[aFunctionProvider.generateGenericFP() /]
 [/for]
 	
 [/template]
