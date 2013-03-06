@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ws:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ws="http://thoughtress.com/WebService">
+<ws:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://thoughtress.com/WebService">
   <endpoint name="MyEndpoint">
-    <functions name="MyFunctionProvider"/>
-    <functions name="GithubFunctionProvider"/>
-    <functions name="TwitterFunctionProvider"/>
+    <functions xsi:type="ws:GenericFunctionProvider" name="MyFunctionProvider"/>
+    <functions xsi:type="ws:GenericFunctionProvider" name="GithubFunctionProvider"/>
+    <functions xsi:type="ws:GenericFunctionProvider" name="TwitterFunctionProvider"/>
   </endpoint>
 </ws:Service>

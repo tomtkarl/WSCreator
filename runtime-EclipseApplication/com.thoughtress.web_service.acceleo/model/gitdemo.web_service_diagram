@@ -7,29 +7,29 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAusECqEeKeHsCCBmSDHw"/>
     </children>
     <children xmi:type="notation:BasicCompartment" xmi:id="_0TAusUCqEeKeHsCCBmSDHw" type="7002">
-      <children xmi:type="notation:Node" xmi:id="_-L4AYES_EeKoxZpncZhNRw" type="3003">
-        <children xmi:type="notation:DecorationNode" xmi:id="_-L4AZUS_EeKoxZpncZhNRw" type="5006"/>
-        <styles xmi:type="notation:DescriptionStyle" xmi:id="_-L4AYUS_EeKoxZpncZhNRw"/>
-        <styles xmi:type="notation:FontStyle" xmi:id="_-L4AYkS_EeKoxZpncZhNRw" fontName="Segoe UI"/>
-        <styles xmi:type="notation:LineStyle" xmi:id="_-L4AY0S_EeKoxZpncZhNRw"/>
-        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.0"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-L4AZES_EeKoxZpncZhNRw"/>
+      <children xmi:type="notation:Node" xmi:id="_873g8YZxEeKNXdiA1nBPxg" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="_874vEIZxEeKNXdiA1nBPxg" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_873g8oZxEeKNXdiA1nBPxg"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_874IAIZxEeKNXdiA1nBPxg" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_874IAYZxEeKNXdiA1nBPxg"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.3"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_874IAoZxEeKNXdiA1nBPxg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_3LXnEXh9EeKE0pE7UMPleA" type="3003">
-        <children xmi:type="notation:DecorationNode" xmi:id="_3LZcQHh9EeKE0pE7UMPleA" type="5006"/>
-        <styles xmi:type="notation:DescriptionStyle" xmi:id="_3LXnEnh9EeKE0pE7UMPleA"/>
-        <styles xmi:type="notation:FontStyle" xmi:id="_3LXnE3h9EeKE0pE7UMPleA" fontName="Segoe UI"/>
-        <styles xmi:type="notation:LineStyle" xmi:id="_3LYOIHh9EeKE0pE7UMPleA"/>
-        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.1"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3LYOIXh9EeKE0pE7UMPleA"/>
+      <children xmi:type="notation:Node" xmi:id="_-a31kIZxEeKNXdiA1nBPxg" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="_-a4coIZxEeKNXdiA1nBPxg" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_-a31kYZxEeKNXdiA1nBPxg"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_-a31koZxEeKNXdiA1nBPxg" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_-a31k4ZxEeKNXdiA1nBPxg"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.4"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-a31lIZxEeKNXdiA1nBPxg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_EbVIAYAjEeKJ74O-o32ppA" type="3003">
-        <children xmi:type="notation:DecorationNode" xmi:id="_EbW9MIAjEeKJ74O-o32ppA" type="5006"/>
-        <styles xmi:type="notation:DescriptionStyle" xmi:id="_EbVIAoAjEeKJ74O-o32ppA"/>
-        <styles xmi:type="notation:FontStyle" xmi:id="_EbVIA4AjEeKJ74O-o32ppA" fontName="Segoe UI"/>
-        <styles xmi:type="notation:LineStyle" xmi:id="_EbVIBIAjEeKJ74O-o32ppA"/>
-        <element xmi:type="ws:FunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.2"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EbVIBYAjEeKJ74O-o32ppA"/>
+      <children xmi:type="notation:Node" xmi:id="__kNcMIZxEeKNXdiA1nBPxg" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="__kOqUIZxEeKNXdiA1nBPxg" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="__kNcMYZxEeKNXdiA1nBPxg"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="__kNcMoZxEeKNXdiA1nBPxg" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="__kNcM4ZxEeKNXdiA1nBPxg"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="gitdemo.web_service#//@endpoint/@functions.5"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="__kNcNIZxEeKNXdiA1nBPxg"/>
       </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_0TAuskCqEeKeHsCCBmSDHw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAus0CqEeKeHsCCBmSDHw"/>
