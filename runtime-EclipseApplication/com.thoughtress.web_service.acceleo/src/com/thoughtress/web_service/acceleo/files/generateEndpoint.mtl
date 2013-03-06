@@ -112,7 +112,7 @@ public class [aEndpoint.name/] extends HttpServlet {
         return new MyFormatter();
     }
 
-    protected MessageFormatter getFormatter(HttpServletRequest request) {
+    private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
         MessageFormatter mf;
         [for (mf : MessageFormatter | aEndpoint.formatters)]
 		[if (i = 1)]
@@ -130,7 +130,7 @@ public class [aEndpoint.name/] extends HttpServlet {
         return mf;
     }
 
-    protected FunctionProvider getFunctionProvider(MessagePart req) {
+    private FunctionProvider getFunctionProvider(MessagePart req) throws UserServiceException {
     	FunctionProvider func;
     	[for (fp : FunctionProvider | aEndpoint.functions)]
 		[if (i = 1)]

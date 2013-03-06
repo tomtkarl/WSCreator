@@ -26,7 +26,7 @@ public class [aFunctionProvider.name/] extends FunctionProvider {
         //[/protected]
 	}
 
-	public MessagePart process(MessagePart req) {
+	public MessagePart process(MessagePart req) throws UserServiceException {
 		//[protected ('process')]
         throw new UnsupportedOperationException("Not yet implemented");
         //[/protected]
