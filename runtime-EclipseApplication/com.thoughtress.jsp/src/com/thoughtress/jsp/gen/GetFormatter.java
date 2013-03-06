@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class GetFormatter extends MessageFormatter {
     public static boolean match(HttpServletRequest req) {
-        // Start of user code getTypes
+        // Start of user code match
         return req.getMethod().equals("GET");
         // End of user code
     }

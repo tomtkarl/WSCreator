@@ -101,13 +101,13 @@ public class MyEndpoint extends HttpServlet {
     }
 
     private MessageFormatter getDefaultFormatter() {
-        return new MyFormatter();
+        return new SOAPFormatter();
     }
 
     private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
         MessageFormatter mf;
-        if (MyFormatter.match(request)) {
-            mf = new MyFormatter();
+        if (SOAPFormatter.match(request)) {
+            mf = new SOAPFormatter();
         } else if (GetFormatter.match(request)) {
             mf = new GetFormatter();
         } else {

@@ -8,7 +8,6 @@ package com.thoughtress.jsp.gen;
  */
 public class MyFunctionProvider extends FunctionProvider {
     // Start of user code classvars
-    private static String[] methods = { "GetStockPrice" };
 
     // End of user code
     /**
