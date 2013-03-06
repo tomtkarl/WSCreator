@@ -108,7 +108,7 @@ public class [aEndpoint.name/] extends HttpServlet {
     }
     
     private MessageFormatter getDefaultFormatter(){
-        return new MyFormatter();
+        return new SOAPFormatter();
     }
 
     private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
