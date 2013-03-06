@@ -8,7 +8,8 @@ import org.joda.time.DateTime;
 public class DateRecogniser {
 
     public MessagePart recognise(MessagePart<?> root) {
-        if (root.children.isEmpty()){
+        if (root.children.isEmpty() && root.attrs.get("type") != null
+                && root.attrs.get("type").equals("Date")){
             try {
                 DateTime dt = new DateTime(root.getValue());
                 MessagePart<Date> ret = new MessagePart<Date>(root.name);
