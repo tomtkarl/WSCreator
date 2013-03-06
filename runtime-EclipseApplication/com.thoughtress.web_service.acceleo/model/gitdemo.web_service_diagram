@@ -3,22 +3,6 @@
   <children xmi:type="notation:Node" xmi:id="_0S-ScUCqEeKeHsCCBmSDHw" type="2001">
     <children xmi:type="notation:DecorationNode" xmi:id="_0TAHoECqEeKeHsCCBmSDHw" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_0TAHoUCqEeKeHsCCBmSDHw" type="7001">
-      <children xmi:type="notation:Node" xmi:id="_18GMYECqEeKeHsCCBmSDHw" type="3002">
-        <children xmi:type="notation:DecorationNode" xmi:id="_18HagECqEeKeHsCCBmSDHw" type="5004"/>
-        <styles xmi:type="notation:DescriptionStyle" xmi:id="_18GMYUCqEeKeHsCCBmSDHw"/>
-        <styles xmi:type="notation:FontStyle" xmi:id="_18GMYkCqEeKeHsCCBmSDHw" fontName="Segoe UI"/>
-        <styles xmi:type="notation:LineStyle" xmi:id="_18GMY0CqEeKeHsCCBmSDHw"/>
-        <element xmi:type="ws:XmlMessageFormatter" href="gitdemo.web_service#//@endpoint/@formatters.0"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_18GMZECqEeKeHsCCBmSDHw"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_DaI0sUiUEeKyOs9YxFAA2g" type="3004">
-        <children xmi:type="notation:DecorationNode" xmi:id="_DaKC0EiUEeKyOs9YxFAA2g" type="5007"/>
-        <styles xmi:type="notation:DescriptionStyle" xmi:id="_DaI0skiUEeKyOs9YxFAA2g"/>
-        <styles xmi:type="notation:FontStyle" xmi:id="_DaI0s0iUEeKyOs9YxFAA2g" fontName="Segoe UI"/>
-        <styles xmi:type="notation:LineStyle" xmi:id="_DaI0tEiUEeKyOs9YxFAA2g"/>
-        <element xmi:type="ws:GenericMessageFormatter" href="gitdemo.web_service#//@endpoint/@formatters.1"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DaI0tUiUEeKyOs9YxFAA2g"/>
-      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_0TAHokCqEeKeHsCCBmSDHw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_0TAusECqEeKeHsCCBmSDHw"/>
     </children>
