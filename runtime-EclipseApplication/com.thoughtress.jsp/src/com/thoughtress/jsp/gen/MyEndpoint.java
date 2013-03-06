@@ -99,12 +99,12 @@ public class MyEndpoint extends HttpServlet {
             e.printStackTrace();
         }
     }
-    
-    private MessageFormatter getDefaultFormatter(){
+
+    private MessageFormatter getDefaultFormatter() {
         return new MyFormatter();
     }
 
-    private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException{
+    private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
         MessageFormatter mf;
         if (MyFormatter.match(request)) {
             mf = new MyFormatter();
@@ -116,7 +116,7 @@ public class MyEndpoint extends HttpServlet {
         return mf;
     }
 
-    private FunctionProvider getFunctionProvider(MessagePart req) throws UserServiceException{
+    private FunctionProvider getFunctionProvider(MessagePart req) throws UserServiceException {
         FunctionProvider func;
         if (MyFunctionProvider.match(req)) {
             func = new MyFunctionProvider();

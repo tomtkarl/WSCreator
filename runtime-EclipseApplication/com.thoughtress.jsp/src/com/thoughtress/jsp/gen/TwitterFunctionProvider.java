@@ -36,7 +36,7 @@ public class TwitterFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) throws UserServiceException{
+    public MessagePart process(MessagePart req) throws UserServiceException {
         // Start of user code process
         String reqMethod;
         MessagePart methodParam;

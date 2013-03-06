@@ -14,7 +14,7 @@ public abstract class FunctionProvider {
      * 
      * @param req The MessagePart object to processed.
      * @return A MessagePart object constructed using the results of processing the request.
-     * @throws UserServiceException 
+     * @throws UserServiceException
      */
     public MessagePart process(MessagePart req) throws UserServiceException {
         throw new UnsupportedOperationException("Not yet implemented");

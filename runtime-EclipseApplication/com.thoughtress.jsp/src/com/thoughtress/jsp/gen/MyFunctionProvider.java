@@ -29,7 +29,7 @@ public class MyFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) {
+    public MessagePart process(MessagePart req) throws UserServiceException {
         // Start of user code process
         return req;
         // End of user code

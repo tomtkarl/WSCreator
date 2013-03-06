@@ -44,7 +44,7 @@ public class GetFormatter extends MessageFormatter {
     }
 
     @Override
-    public String buildError(UserServiceException e) throws Exception{
+    public String buildError(UserServiceException e) throws Exception {
         // Start of user code buildError
         return "" + e.code + " " + e.getMessage();
         // End of user code

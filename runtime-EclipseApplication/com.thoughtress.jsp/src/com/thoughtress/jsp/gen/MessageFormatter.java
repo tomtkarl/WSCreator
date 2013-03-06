@@ -26,7 +26,7 @@ public abstract class MessageFormatter {
      * 
      * @param data The data string to be parsed
      * @return A MessagePart object derived from the given data.
-     * @throws UserServiceException 
+     * @throws UserServiceException
      */
     public MessagePart parseToRequest(String data, HttpServletRequest request)
             throws UserServiceException {
@@ -38,7 +38,7 @@ public abstract class MessageFormatter {
      * 
      * @param answer The MessagePart object to be parsed to string
      * @return A MessagePart object derived from the given data.
-     * @throws UserServiceException 
+     * @throws UserServiceException
      */
     public String parseToFormat(MessagePart answer) throws UserServiceException {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -50,7 +50,7 @@ public abstract class MessageFormatter {
      * @param code The error code (using HTTP standard codes)
      * @param message A description of the error reason
      * @return A pretty string explaining the error to the user.
-     * @throws Exception 
+     * @throws Exception
      */
     public String buildError(UserServiceException e) throws Exception {
         throw new UnsupportedOperationException("Not yet implemented");

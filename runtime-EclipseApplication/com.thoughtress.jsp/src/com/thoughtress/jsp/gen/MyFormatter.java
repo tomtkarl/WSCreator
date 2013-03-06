@@ -53,7 +53,8 @@ public class MyFormatter extends MessageFormatter {
      * @generated
      */
     @Override
-    public MessagePart parseToRequest(String data, HttpServletRequest request) throws UserServiceException{
+    public MessagePart parseToRequest(String data, HttpServletRequest request)
+            throws UserServiceException {
         MimeHeaders headers = new MimeHeaders();
         headers.addHeader("Content-Type", "application/soap+xml");
         InputStream xmlStream = new ByteArrayInputStream(data.getBytes());
@@ -82,7 +83,7 @@ public class MyFormatter extends MessageFormatter {
     }
 
     /**
-     * @throws UserServiceException 
+     * @throws UserServiceException
      * @generated
      */
     private static MessagePart buildMessageRoot(SOAPBody body) throws UserServiceException {
@@ -134,7 +135,7 @@ public class MyFormatter extends MessageFormatter {
     }
 
     /**
-     * @throws UserServiceException 
+     * @throws UserServiceException
      * @generated
      */
     @Override
@@ -157,7 +158,7 @@ public class MyFormatter extends MessageFormatter {
             throw new UserServiceException(500, "Error Whilst Building Response");
         }
         try {
-            return  new String(out.toByteArray(), "utf-8");
+            return new String(out.toByteArray(), "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             throw new UserServiceException(500, "Error Whilst Building Response");
@@ -202,7 +203,7 @@ public class MyFormatter extends MessageFormatter {
     }
 
     @Override
-    public String buildError(UserServiceException ue) throws Exception{
+    public String buildError(UserServiceException ue) throws Exception {
         SOAPMessage soapMessage = null;
         try {
             soapMessage = MessageFactory.newInstance().createMessage();
