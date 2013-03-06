@@ -47,9 +47,10 @@ public class SOAPFormatter extends MessageFormatter {
         return false;
         // End of user code
     }
+
     @Override
     public MessagePart parseToRequest(String data, HttpServletRequest request)
-        // Start of user code parseToRequest
+    // Start of user code parseToRequest
             throws UserServiceException {
         MimeHeaders headers = new MimeHeaders();
         headers.addHeader("Content-Type", request.getContentType());
