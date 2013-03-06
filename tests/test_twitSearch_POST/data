@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+<soap:Header />
+<soap:Body>
+<m:TwitterRequest xmlns:m="https://api.twitter.com">
+<method>Search</method>
+<since type="Date">2013-03-05T18:14:25+00:00</since>
+<until type="Date">2013-03-06T18:14:26+00:00</until>
+<query>This is awesome</query>
+</m:TwitterRequest>
+</soap:Body>
+</soap:Envelope>
