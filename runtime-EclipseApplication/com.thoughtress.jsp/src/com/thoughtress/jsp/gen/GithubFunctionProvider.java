@@ -28,7 +28,7 @@ public class GithubFunctionProvider extends FunctionProvider {
      * @param req The MessagePart object to be matched against.
      * @return A Boolean value denoting whether this FunctionProvider matches the given MessagePart.
      */
-    public static Boolean match(MessagePart req) {
+    public static Boolean match(MessagePart<?> req) {
         // Start of user code match
         if (req.name.equals("GitHubRequest") && req.options.get("nsURI") != null
                 && req.options.get("nsURI").equals("https://api.github.com")) {
@@ -41,12 +41,12 @@ public class GithubFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) throws UserServiceException {
+    public MessagePart process(MessagePart<?> req) throws UserServiceException {
         // Start of user code process
         String reqMethod;
-        MessagePart methodParam;
-        if ((methodParam = req.getChild("method")) != null) {
-            reqMethod = methodParam.textValue;
+        MessagePart<String> methodParam;
+        if ((methodParam = (MessagePart<String>)req.getChild("method")) != null) {
+            reqMethod = methodParam.getValue();
             req.children.remove(methodParam);
         } else {
             throw new UserServiceException(400, "No Method Element");
@@ -59,17 +59,17 @@ public class GithubFunctionProvider extends FunctionProvider {
             URIBuilder builder = new URIBuilder();
             builder.setScheme(githubScheme).setHost(githubHost);
             builder.setPath(reqMethod);
-            for (MessagePart param : req.children) {
-                builder.addParameter(param.name, param.textValue);
+            for (MessagePart<?> param : req.children) {
+                builder.addParameter(param.name, param.getValue());
             }
             URI uri = builder.build();
             HttpGet httpget = new HttpGet(uri);
             System.out.println("GitHubProcess::" + httpget.getURI());
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             final String responseBody = httpclient.execute(httpget, responseHandler);
-            return new MessagePart("GitHubResponse") {
+            return new MessagePart<String>("GitHubResponse") {
                 {
-                    textValue = responseBody;
+                    setValue(responseBody);
                 }
             };
             // System.out.println(responseBody);

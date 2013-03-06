@@ -98,7 +98,7 @@ public class SOAPFormatter extends MessageFormatter {
      * @generated
      */
     private static MessagePart buildMessagePart(SOAPElement elem) {
-        MessagePart part = new MessagePart(getElementName(elem));
+        MessagePart<String> part = new MessagePart<String>(getElementName(elem));
         Iterator<String> nsIter = elem.getNamespacePrefixes();
         while (nsIter.hasNext()) {
             String nsPrefix = nsIter.next();
@@ -119,7 +119,7 @@ public class SOAPFormatter extends MessageFormatter {
             if (type == ELEMENT_NODE) {
                 part.children.add(buildMessagePart((SOAPElement) nextElem));
             } else if (type == TEXT_NODE) {
-                part.textValue = ((Text) nextElem).getTextContent();
+                part.setValue(((Text)nextElem).getTextContent());
             }
         }
         return part;
@@ -176,7 +176,7 @@ public class SOAPFormatter extends MessageFormatter {
         final SOAPEnvelope soapEnvelope = soapPart.getEnvelope();
         SOAPBody soapBody = soapEnvelope.getBody();
         class NodeBuilder {
-            public SOAPElement buildNode(MessagePart part) throws SOAPException {
+            public SOAPElement buildNode(MessagePart<?> part) throws SOAPException {
                 Name partName;
                 if (part.options.containsKey("nsURI") && part.options.containsKey("nsPrefix")) {
                     partName = soapEnvelope.createName(part.name, part.options.get("nsPrefix"),
@@ -188,11 +188,11 @@ public class SOAPFormatter extends MessageFormatter {
                 for (String key : part.getAttrKeys()) {
                     elem.addAttribute(soapEnvelope.createName(key), part.getAttr(key));
                 }
-                for (MessagePart childPart : part.children) {
+                for (MessagePart<?> childPart : part.children) {
                     elem.addChildElement(buildNode(childPart));
                 }
                 if (part.isText()) {
-                    elem.addTextNode(part.textValue);
+                    elem.addTextNode(part.getValue());
                 }
                 return elem;
             }

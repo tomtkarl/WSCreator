@@ -61,6 +61,7 @@ public class MyEndpoint extends HttpServlet {
         try {
             mf = getFormatter(request);
             MessagePart req = mf.parseToRequest(data, request);
+            req = new DateRecogniser().recognise(req);
             FunctionProvider func = getFunctionProvider(req);
             MessagePart resp = func.process(req);
             ret = mf.parseToFormat(resp);

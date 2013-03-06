@@ -22,14 +22,14 @@ public class GetFormatter extends MessageFormatter {
             throws UserServiceException {
         // Start of user code parseToRequest
         String method = request.getPathInfo().split("/", 2)[1];
-        MessagePart req = new MessagePart(method);
+        MessagePart<?> req = new MessagePart(method);
         req.attrs.put("host", request.getServerName());
         req.attrs.put("contextPath", request.getContextPath());
         req.attrs.put("servletPath", request.getServletPath());
         req.attrs.put("pathInfo", request.getPathInfo());
         for (String key : Collections.list(request.getParameterNames())) {
-            MessagePart param = new MessagePart(key);
-            param.textValue = request.getParameter(key);
+            MessagePart<String> param = new MessagePart<String>(key);
+            param.setValue(request.getParameter(key));
             req.children.add(param);
         }
         return req;

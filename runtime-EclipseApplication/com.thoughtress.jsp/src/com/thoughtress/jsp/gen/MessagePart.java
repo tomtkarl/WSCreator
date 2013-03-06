@@ -6,23 +6,32 @@ import java.util.HashMap;
 /**
  * A generic Message class to be subclassed by specialised Message types.
  */
-public class MessagePart {
+public class MessagePart<T> {
     public HashMap<String, String> attrs;
     public HashMap<String, String> options;
-    public ArrayList<MessagePart> children;
-    public String textValue;
+    public ArrayList<MessagePart<?>> children;
+    private T value;
     public String name;
 
     public MessagePart(String name) {
         this.attrs = new HashMap<String, String>();
         this.options = new HashMap<String, String>();
-        this.children = new ArrayList<MessagePart>();
-        this.textValue = "";
+        this.children = new ArrayList<MessagePart<?>>();
+        this.value = null;
         this.name = name;
     }
 
     public boolean isText() {
-        return this.textValue != "";
+        return this.value instanceof String;
+    }
+    public T getValueAsType(){
+        return this.value;
+    }
+    public String getValue(){
+        return (this.value == null)? "" : this.value.toString();
+    }
+    public void setValue(T value){
+        this.value = value;
     }
 
     /**
@@ -31,8 +40,8 @@ public class MessagePart {
      * @param name The name of the child to search for.
      * @return A MessagePart matching the given name if it exists. Otherwise null is returned.
      */
-    public MessagePart getChild(String name) {
-        for (MessagePart child : this.children) {
+    public MessagePart<?> getChild(String name) {
+        for (MessagePart<?> child : this.children) {
             if (child.name.equals(name)) {
                 return child;
             }
@@ -124,8 +133,8 @@ public class MessagePart {
         sb.append("Name: " + this.name);
         sb.append("\n>>Attrs: " + this.attrs);
         sb.append("\n>>Options: " + this.options);
-        sb.append("\n>>TextValue: " + this.textValue);
-        for (MessagePart child : this.children) {
+        sb.append("\n>>Value: " + this.value);
+        for (MessagePart<?> child : this.children) {
             sb.append("\n\n" + child.toString());
         }
         return sb.toString();

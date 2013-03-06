@@ -5,7 +5,7 @@ package com.thoughtress.jsp.gen;
  * FunctionProvider is subclassed by all Function Provider implementations.
  */
 public abstract class FunctionProvider {
-    public static Boolean match(MessagePart req) {
+    public static Boolean match(MessagePart<?> req) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -16,7 +16,7 @@ public abstract class FunctionProvider {
      * @return A MessagePart object constructed using the results of processing the request.
      * @throws UserServiceException
      */
-    public MessagePart process(MessagePart req) throws UserServiceException {
+    public MessagePart process(MessagePart<?> req) throws UserServiceException {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

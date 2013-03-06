@@ -2,7 +2,12 @@ package com.thoughtress.jsp.gen;
 
 //Start of user code imports
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import twitter4j.Query;
+import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -36,12 +41,12 @@ public class TwitterFunctionProvider extends FunctionProvider {
         // End of user code
     }
 
-    public MessagePart process(MessagePart req) throws UserServiceException {
-        // Start of user code process
+    public MessagePart process(MessagePart<?> req) throws UserServiceException {
+     // Start of user code process
         String reqMethod;
-        MessagePart methodParam;
-        if ((methodParam = req.getChild("method")) != null) {
-            reqMethod = methodParam.textValue;
+        MessagePart<String> methodParam;
+        if ((methodParam = (MessagePart<String>)req.getChild("method")) != null) {
+            reqMethod = methodParam.getValue();
             req.children.remove(methodParam);
         } else {
             throw new UserServiceException(400, "No Method Element");
@@ -58,14 +63,28 @@ public class TwitterFunctionProvider extends FunctionProvider {
                 List<Status> statuses = twitter.getHomeTimeline();
                 return statusesToMessagePart(statuses);
             } else if (reqMethod.equals("ShowStatus")) {
-                String id = req.getChild("id").textValue;
+                String id = req.getChild("id").getValue();
                 Status status = twitter.showStatus(Long.decode(id));
                 return statusToMessagePart(status);
+            } else if (reqMethod.equals("Search")) {
+                Date since = ((Date)req.getChild("since").getValueAsType());
+                Date until = ((Date)req.getChild("until").getValueAsType());
+                String key = req.getChild("query").getValue();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                Query query = new Query().since(df.format(since)).until(df.format(until));
+                query.setQuery(key);
+                System.out.println("query:" + query);
+                QueryResult rslt = twitter.search(query);
+                List<Status> statuses = rslt.getTweets();
+                System.out.println("query returns: " + statuses.size());
+                return statusesToMessagePart(statuses);
             } else {
                 throw new UserServiceException(400, "Unrecognised TwitterRequest");
             }
         } catch (TwitterException e) {
             throw new UserServiceException(500, "Error Whilst Processing Request");
+        } catch (ClassCastException e) {
+            throw new UserServiceException(400, "Malformed Data in Request");
         }
         // End of user code
     }
@@ -76,8 +95,8 @@ public class TwitterFunctionProvider extends FunctionProvider {
      * @return A MessagePart from the given Status list
      * @generated-not
      */
-    private MessagePart statusesToMessagePart(List<Status> statuses) {
-        MessagePart root = new MessagePart("TwitterResponse");
+    private MessagePart<String> statusesToMessagePart(List<Status> statuses) {
+        MessagePart<String> root = new MessagePart<String>("TwitterResponse");
         for (Status status : statuses) {
             root.children.add(statusToMessagePart(status));
         }
@@ -90,12 +109,12 @@ public class TwitterFunctionProvider extends FunctionProvider {
      * @return A MessagePart from the given Status
      * @generated-not
      */
-    private MessagePart statusToMessagePart(final Status status) {
+    private MessagePart<String> statusToMessagePart(final Status status) {
         // System.out.println("Tweet:: " + status.getText());
         final DateFormat df = DateFormat.getInstance();
-        MessagePart tweet = new MessagePart("tweet") {
+        MessagePart<String> tweet = new MessagePart<String>("tweet") {
             {
-                textValue = status.getText();
+                setValue(status.getText());
                 attrs.put("id", String.valueOf(status.getId()));
                 attrs.put("favourited", Boolean.toString(status.isFavorited()));
                 attrs.put("author", status.getUser().getName());
