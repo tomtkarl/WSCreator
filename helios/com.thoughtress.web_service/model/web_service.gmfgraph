@@ -25,9 +25,15 @@
         <children
             xsi:type="gmfgraph:Rectangle"
             name="FunctionsCompartmentFigure"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="RecognisersCompartmentFigure"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getFigureRecognisersCompartmentFigure"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.3"/>
       <accessors
           accessor="getFigureFunctionsCompartmentFigure"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
@@ -66,6 +72,22 @@
           accessor="getFigureGenericMessageFormatterNameFigure"
           figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="GenericDataRecogniserFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="GenericDataRecogniserFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="darkBlue"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="GenericDataRecogniserNameFigure"/>
+      </actualFigure>
+      <accessors
+          accessor="getFigureGenericDataRecogniserNameFigure"
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="Endpoint"
@@ -76,20 +98,32 @@
   <nodes
       name="MessageFormatter"
       figure="GenericMessageFormatterFigure"/>
+  <nodes
+      name="DataRecogniser"
+      figure="GenericDataRecogniserFigure"/>
   <compartments
       name="FormattersCompartment"
       figure="EndpointFigure"
       collapsible="true"
-      accessor="//@figures.0/@descriptors.0/@accessors.2"/>
+      accessor="//@figures.0/@descriptors.0/@accessors.3"/>
+  <compartments
+      name="RecognisersCompartment"
+      figure="EndpointFigure"
+      collapsible="true"
+      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
   <compartments
       name="FunctionsCompartment"
       figure="EndpointFigure"
       collapsible="true"
-      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+      accessor="//@figures.0/@descriptors.0/@accessors.2"/>
   <labels
       name="EndpointName"
       figure="EndpointFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels
+      name="GenericDataRecogniserName"
+      figure="GenericDataRecogniserFigure"
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
   <labels
       name="GenericFunctionProviderName"
       figure="GenericFunctionProviderFigure"

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:ws="http://thoughtress.com/WebService" xmi:id="_cH2U0Ya_EeK9Bahzte-fFQ" type="Web_service" name="demo.web_service_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_cqE4IIa_EeK9Bahzte-fFQ" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_cqGtUIa_EeK9Bahzte-fFQ" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_cqGtUYa_EeK9Bahzte-fFQ" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_cqGtUoa_EeK9Bahzte-fFQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_cqGtU4a_EeK9Bahzte-fFQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_cqHUYIa_EeK9Bahzte-fFQ" type="7002">
+      <children xmi:type="notation:Node" xmi:id="_gQ8RIIa_EeK9Bahzte-fFQ" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="_gQ84MIa_EeK9Bahzte-fFQ" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_gQ8RIYa_EeK9Bahzte-fFQ"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_gQ8RIoa_EeK9Bahzte-fFQ" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_gQ8RI4a_EeK9Bahzte-fFQ"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="demo.web_service#//@endpoint/@functions.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gQ8RJIa_EeK9Bahzte-fFQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_g-tWEIa_EeK9Bahzte-fFQ" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="_g-t9IIa_EeK9Bahzte-fFQ" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_g-tWEYa_EeK9Bahzte-fFQ"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_g-tWEoa_EeK9Bahzte-fFQ" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_g-tWE4a_EeK9Bahzte-fFQ"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="demo.web_service#//@endpoint/@functions.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g-tWFIa_EeK9Bahzte-fFQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_h-rlUIa_EeK9Bahzte-fFQ" type="3005">
+        <children xmi:type="notation:DecorationNode" xmi:id="_h-szcIa_EeK9Bahzte-fFQ" type="5008"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_h-rlUYa_EeK9Bahzte-fFQ"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_h-sMYIa_EeK9Bahzte-fFQ" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_h-sMYYa_EeK9Bahzte-fFQ"/>
+        <element xmi:type="ws:GenericFunctionProvider" href="demo.web_service#//@endpoint/@functions.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h-sMYoa_EeK9Bahzte-fFQ"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_cqHUYYa_EeK9Bahzte-fFQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_cqHUYoa_EeK9Bahzte-fFQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_cqHUY4a_EeK9Bahzte-fFQ" type="7003">
+      <children xmi:type="notation:Node" xmi:id="_jMGasIa_EeK9Bahzte-fFQ" type="3006">
+        <children xmi:type="notation:DecorationNode" xmi:id="_jMHo0Ia_EeK9Bahzte-fFQ" type="5009"/>
+        <styles xmi:type="notation:DescriptionStyle" xmi:id="_jMGasYa_EeK9Bahzte-fFQ"/>
+        <styles xmi:type="notation:FontStyle" xmi:id="_jMGasoa_EeK9Bahzte-fFQ" fontName="Segoe UI"/>
+        <styles xmi:type="notation:LineStyle" xmi:id="_jMGas4a_EeK9Bahzte-fFQ"/>
+        <element xmi:type="ws:GenericDataRecogniser" href="demo.web_service#//@endpoint/@recognisers.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jMGatIa_EeK9Bahzte-fFQ"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_cqHUZIa_EeK9Bahzte-fFQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_cqHUZYa_EeK9Bahzte-fFQ"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_cqE4IYa_EeK9Bahzte-fFQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_cqE4Ioa_EeK9Bahzte-fFQ" fontName="Segoe UI"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_cqE4I4a_EeK9Bahzte-fFQ"/>
+    <element xmi:type="ws:Endpoint" href="demo.web_service#//@endpoint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cqE4JIa_EeK9Bahzte-fFQ" x="185" y="85" width="226" height="201"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_cH2U0oa_EeK9Bahzte-fFQ"/>
+  <element xmi:type="ws:Service" href="demo.web_service#/"/>
+</notation:Diagram>

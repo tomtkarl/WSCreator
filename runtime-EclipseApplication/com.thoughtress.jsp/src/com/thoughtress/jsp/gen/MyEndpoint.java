@@ -57,11 +57,10 @@ public class MyEndpoint extends HttpServlet {
     private void handleRequest(String data, HttpServletRequest request, HttpServletResponse response) {
         String ret;
         MessageFormatter mf = null;
-        ;
         try {
             mf = getFormatter(request);
             MessagePart req = mf.parseToRequest(data, request);
-            req = new DateRecogniser().recognise(req);
+            req = recogniseData(req);
             FunctionProvider func = getFunctionProvider(req);
             MessagePart resp = func.process(req);
             ret = mf.parseToFormat(resp);
@@ -103,6 +102,11 @@ public class MyEndpoint extends HttpServlet {
 
     private MessageFormatter getDefaultFormatter() {
         return new SOAPFormatter();
+    }
+    
+    private MessagePart recogniseData(MessagePart req){
+        req = DateRecogniser.recognise(req);
+        return req;
     }
 
     private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {

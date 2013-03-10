@@ -2,7 +2,8 @@
 <ws:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://thoughtress.com/WebService">
   <endpoint name="MyEndpoint">
     <functions xsi:type="ws:GenericFunctionProvider" name="MyFunctionProvider"/>
-    <functions xsi:type="ws:GenericFunctionProvider" name="GithubFunctionProvider"/>
     <functions xsi:type="ws:GenericFunctionProvider" name="TwitterFunctionProvider"/>
+    <functions xsi:type="ws:GenericFunctionProvider" name="GithubFunctionProvider"/>
+    <recognisers xsi:type="ws:GenericDataRecogniser" name="DateRecogniser"/>
   </endpoint>
 </ws:Service>

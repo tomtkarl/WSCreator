@@ -13,6 +13,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//Endpoint/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/formatters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/functions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference web_service.ecore#//Endpoint/recognisers"/>
     </genClasses>
     <genClasses image="false" ecoreClass="web_service.ecore#//MessageFormatter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//MessageFormatter/name"/>
@@ -22,5 +23,9 @@
     </genClasses>
     <genClasses ecoreClass="web_service.ecore#//GenericMessageFormatter"/>
     <genClasses ecoreClass="web_service.ecore#//GenericFunctionProvider"/>
+    <genClasses ecoreClass="web_service.ecore#//DataRecogniser">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute web_service.ecore#//DataRecogniser/name"/>
+    </genClasses>
+    <genClasses ecoreClass="web_service.ecore#//GenericDataRecogniser"/>
   </genPackages>
 </genmodel:GenModel>

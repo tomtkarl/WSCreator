@@ -2,6 +2,7 @@
 [module generateEndpoint('http://thoughtress.com/WebService')/]
 [import com::thoughtress::web_service::acceleo::files::generateGenericMF/]
 [import com::thoughtress::web_service::acceleo::files::generateGenericFP/]
+[import com::thoughtress::web_service::acceleo::files::generateGenericDR/]
 
 [template public generateEndpoint(aEndpoint : Endpoint)]
 [file (aEndpoint.name+'.java', false, 'UTF-8')]
@@ -64,11 +65,12 @@ public class [aEndpoint.name/] extends HttpServlet {
     private void handleRequest(String data, HttpServletRequest request, HttpServletResponse response) {
         String ret;
         MessageFormatter mf = null;
-        ;
         try {
             mf = getFormatter(request);
             MessagePart req = mf.parseToRequest(data, request);
+            req = recogniseData(req);
             FunctionProvider func = getFunctionProvider(req);
+            
             MessagePart resp = func.process(req);
             ret = mf.parseToFormat(resp);
         } catch (UserServiceException e) {
@@ -109,6 +111,13 @@ public class [aEndpoint.name/] extends HttpServlet {
     
     private MessageFormatter getDefaultFormatter(){
         return new SOAPFormatter();
+    }
+    
+    private MessagePart recogniseData(MessagePart req){
+    	[for (dr : DataRecogniser | aEndpoint.recognisers)]
+		req = [dr.name/].recognise(req);	
+		[/for]
+        return req;
     }
 
     private MessageFormatter getFormatter(HttpServletRequest request) throws UserServiceException {
@@ -154,6 +163,9 @@ public class [aEndpoint.name/] extends HttpServlet {
 [/for]
 [for (aFunctionProvider : FunctionProvider | aEndpoint.functions)]
 		[aFunctionProvider.generateGenericFP() /]
+[/for]
+[for (aDataRecogniser : DataRecogniser | aEndpoint.recognisers)]
+		[aDataRecogniser.generateGenericDR() /]
 [/for]
 	
 [/template]

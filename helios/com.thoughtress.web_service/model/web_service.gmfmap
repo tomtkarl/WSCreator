@@ -67,6 +67,28 @@
               href="web_service.gmfgraph#MessageFormatter"/>
         </ownedChild>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.2"
+          referencedChild="//@nodes.0/@ownedChild/@children.2/@ownedChild">
+        <containmentFeature
+            href="web_service.ecore#//Endpoint/recognisers"/>
+        <ownedChild>
+          <domainMetaElement
+              href="web_service.ecore#//GenericDataRecogniser"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="web_service.gmfgraph#GenericDataRecogniserName"/>
+            <features
+                href="web_service.ecore#//DataRecogniser/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="web_service.gmftool#//@palette/@tools.0/@tools.3"/>
+          <diagramNode
+              href="web_service.gmfgraph#DataRecogniser"/>
+        </ownedChild>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.1">
         <compartment
@@ -76,6 +98,11 @@
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
             href="web_service.gmfgraph#FunctionsCompartment"/>
+      </compartments>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.2">
+        <compartment
+            href="web_service.gmfgraph#RecognisersCompartment"/>
       </compartments>
     </ownedChild>
   </nodes>
